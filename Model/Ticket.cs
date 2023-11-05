@@ -14,7 +14,8 @@ namespace Model
         public string SubjectOfIncident { get; set; }
         public string TypeOfIncident { get; set; }
         public string UserID { get; set; }
-        public string Priority { get; set; }
+        public TicketPriority Priority { get; set; }
+        public TicketStatus Status { get; set; }
         public DateTime Deadline { get; set; }
         public string Description { get; set; }
         public ObjectId EmployeeID { get; set; }
