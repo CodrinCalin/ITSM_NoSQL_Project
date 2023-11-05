@@ -102,7 +102,6 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Runtime.Compi
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.ValueTuple.xml
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\DAL.pdb
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.AssemblyReference.cache
-C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.Form1.resources
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.Properties.Resources.resources
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.GenerateResource.cache
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CoreCompileInputs.cache
@@ -110,3 +109,6 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CopyComple
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.exe
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.pdb
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.LoginForm.resources
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.DashboardForm.resources
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.IncidentManagementForm.resources
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.UserManagementForm.resources
