@@ -32,7 +32,6 @@ namespace DemoApp
            {
                 MessageBox.Show(ex.Message);
            }
-
         }
 
         private void ValidateLogin()

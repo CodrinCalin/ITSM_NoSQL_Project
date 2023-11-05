@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BCrypt.Net;
 
 namespace Logic
 {
@@ -20,17 +21,20 @@ namespace Logic
             employees = employeeDao.GetEmployees();
         }
 
-        public bool CheckForAccountInDatabase(string username, string password)
+        public bool CheckForAccountInDatabase(string username, string passwordInput)
         {
             bool isAccountInDatabase = false;
 
             foreach (Employee employee in employees)
             {
-                if (employee.Username == username && employee.Password == password)
+                if (employee.Username == username)
                 {
-                    this.employee = employee;
-                    isAccountInDatabase = true;
-                    break;
+                    if (BCrypt.Net.BCrypt.Verify(passwordInput, employee.Password))
+                    {
+                        this.employee = employee;
+                        isAccountInDatabase = true;
+                        break;
+                    }
                 }
             }
             return isAccountInDatabase;
