@@ -112,3 +112,10 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.LoginForm.re
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.DashboardForm.resources
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.IncidentManagementForm.resources
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.UserManagementForm.resources
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Memory.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\Logic.dll.config
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Memory.xml
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Numerics.Vectors.xml

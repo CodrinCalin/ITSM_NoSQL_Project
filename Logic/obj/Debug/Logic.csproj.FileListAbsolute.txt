@@ -91,3 +91,10 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.csproj.CoreCompi
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.csproj.CopyComplete
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.pdb
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\Logic.dll.config
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Memory.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Memory.xml
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Numerics.Vectors.xml
