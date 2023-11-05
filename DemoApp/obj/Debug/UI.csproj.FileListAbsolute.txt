@@ -109,3 +109,4 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CoreCompil
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CopyComplete
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.exe
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.pdb
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.LoginForm.resources
