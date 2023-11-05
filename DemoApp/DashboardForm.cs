@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,11 @@ namespace DemoApp
 {
     public partial class DashboardForm : Form
     {
-        public DashboardForm()
+        Employee employee;
+        public DashboardForm(Employee employee)
         {
             InitializeComponent();
+            this.employee = employee;
         }
 
     }

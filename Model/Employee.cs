@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal class Employee
+    public class Employee
     {
         public ObjectId Id { get; set; } // MongoDB ObjectId
         public string FirstName { get; set; }
@@ -17,6 +17,7 @@ namespace Model
         public bool IsSuperDesk { get; set; }
         public string LocationBranch { get; set; }
         public string Password { get; set; }
+        public string Username { get; set; }
 
     }
 }

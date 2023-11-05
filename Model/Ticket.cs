@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal class Ticket
+    public class Ticket
     {
         public ObjectId Id { get; set; }
         public DateTime DateAndTime { get; set; }

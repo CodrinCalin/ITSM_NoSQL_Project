@@ -44,6 +44,8 @@
             this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
+            this.buttonLogin = new System.Windows.Forms.Button();
+            this.labelError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -139,6 +141,7 @@
             this.labelFogotLoginDetails.Size = new System.Drawing.Size(206, 18);
             this.labelFogotLoginDetails.TabIndex = 8;
             this.labelFogotLoginDetails.Text = "Forgot Login Details ?";
+            this.labelFogotLoginDetails.Click += new System.EventHandler(this.labelFogotLoginDetails_Click);
             // 
             // labelUsername
             // 
@@ -200,12 +203,39 @@
             this.textBoxUsername.Size = new System.Drawing.Size(356, 35);
             this.textBoxUsername.TabIndex = 14;
             // 
+            // buttonLogin
+            // 
+            this.buttonLogin.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonLogin.Location = new System.Drawing.Point(392, 657);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(197, 63);
+            this.buttonLogin.TabIndex = 15;
+            this.buttonLogin.Text = "Login";
+            this.buttonLogin.UseVisualStyleBackColor = false;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            // 
+            // labelError
+            // 
+            this.labelError.AutoSize = true;
+            this.labelError.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelError.ForeColor = System.Drawing.Color.Red;
+            this.labelError.Location = new System.Drawing.Point(299, 616);
+            this.labelError.Name = "labelError";
+            this.labelError.Size = new System.Drawing.Size(413, 24);
+            this.labelError.TabIndex = 16;
+            this.labelError.Text = "Incorrect Username or Password!";
+            this.labelError.Visible = false;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(966, 782);
+            this.Controls.Add(this.labelError);
+            this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.textBoxUsername);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.checkBoxRememberMe);
@@ -246,5 +276,7 @@
         private System.Windows.Forms.CheckBox checkBoxRememberMe;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.TextBox textBoxUsername;
+        private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.Label labelError;
     }
 }
