@@ -168,4 +168,4 @@ C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CopyC
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.exe
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.pdb
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.CreateTicketForm.resources
-C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.SearchingIncidentsForm.resources
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.FilteringIncidentsForm.resources
