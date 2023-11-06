@@ -42,14 +42,8 @@
             this.buttonIncidentManagement = new System.Windows.Forms.Button();
             this.buttonDashboard = new System.Windows.Forms.Button();
             this.labelOverviewTickets = new System.Windows.Forms.Label();
-            this.textBoxSubjectFiltering = new System.Windows.Forms.TextBox();
             this.buttonCreateTicket = new System.Windows.Forms.Button();
             this.listViewTickets = new System.Windows.Forms.ListView();
-            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Subject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,19 +123,6 @@
             this.labelOverviewTickets.TabIndex = 13;
             this.labelOverviewTickets.Text = "Overview tickets";
             // 
-            // textBoxSubjectFiltering
-            // 
-            this.textBoxSubjectFiltering.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.textBoxSubjectFiltering.Font = new System.Drawing.Font("Mongolian Baiti", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSubjectFiltering.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.textBoxSubjectFiltering.Location = new System.Drawing.Point(382, 210);
-            this.textBoxSubjectFiltering.Name = "textBoxSubjectFiltering";
-            this.textBoxSubjectFiltering.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBoxSubjectFiltering.Size = new System.Drawing.Size(227, 31);
-            this.textBoxSubjectFiltering.TabIndex = 14;
-            this.textBoxSubjectFiltering.Text = "filter by subject";
-            this.textBoxSubjectFiltering.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // buttonCreateTicket
             // 
             this.buttonCreateTicket.BackColor = System.Drawing.Color.Aqua;
@@ -156,12 +137,6 @@
             // 
             // listViewTickets
             // 
-            this.listViewTickets.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ID,
-            this.Subject,
-            this.User,
-            this.Date,
-            this.Status});
             this.listViewTickets.HideSelection = false;
             this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
@@ -172,31 +147,6 @@
             this.listViewTickets.UseCompatibleStateImageBehavior = false;
             this.listViewTickets.View = System.Windows.Forms.View.Details;
             // 
-            // ID
-            // 
-            this.ID.Text = "ID";
-            this.ID.Width = 100;
-            // 
-            // Subject
-            // 
-            this.Subject.Text = "Subject";
-            this.Subject.Width = 280;
-            // 
-            // User
-            // 
-            this.User.Text = "User";
-            this.User.Width = 180;
-            // 
-            // Date
-            // 
-            this.Date.Text = "Date";
-            this.Date.Width = 180;
-            // 
-            // Status
-            // 
-            this.Status.Text = "Status";
-            this.Status.Width = 150;
-            // 
             // IncidentManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -205,7 +155,6 @@
             this.ClientSize = new System.Drawing.Size(966, 782);
             this.Controls.Add(this.listViewTickets);
             this.Controls.Add(this.buttonCreateTicket);
-            this.Controls.Add(this.textBoxSubjectFiltering);
             this.Controls.Add(this.labelOverviewTickets);
             this.Controls.Add(this.pictureBoxGarden);
             this.Controls.Add(this.labelLicense);
@@ -231,13 +180,7 @@
         private System.Windows.Forms.Button buttonIncidentManagement;
         private System.Windows.Forms.Button buttonDashboard;
         private System.Windows.Forms.Label labelOverviewTickets;
-        private System.Windows.Forms.TextBox textBoxSubjectFiltering;
         private System.Windows.Forms.Button buttonCreateTicket;
         private System.Windows.Forms.ListView listViewTickets;
-        private System.Windows.Forms.ColumnHeader ID;
-        private System.Windows.Forms.ColumnHeader Subject;
-        private System.Windows.Forms.ColumnHeader User;
-        private System.Windows.Forms.ColumnHeader Date;
-        private System.Windows.Forms.ColumnHeader Status;
     }
 }
