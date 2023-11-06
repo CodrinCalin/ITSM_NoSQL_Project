@@ -16,6 +16,7 @@ namespace DemoApp
     public partial class IncidentManagementForm : Form
     {
         private TicketLogic ticketLogic;
+        private EmployeeLogic employeeLogic;
         public IncidentManagementForm() //Employee loggedInEmployee
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace DemoApp
                 DisplayTicketsForRegularEmployee();
             }*/
             ticketLogic = new TicketLogic();
+            employeeLogic = new EmployeeLogic();
             DisplayAllTickets();
         }
 
@@ -44,8 +46,10 @@ namespace DemoApp
             int id = 1;
             foreach (Ticket ticket in tickets)
             {
+                Employee employee = employeeLogic.GetEmployeeById(ticket.EmployeeID);
+
                 ListViewItem item = new ListViewItem(id.ToString());
-                //item.SubItems.Add(e.FirstName);
+                item.SubItems.Add(employee.FirstName);
                 item.SubItems.Add(ticket.SubjectOfIncident);
                 item.SubItems.Add(ticket.Priority.ToString());
                 item.SubItems.Add(ticket.DateAndTime.ToString("dd/MM/yy HH:mm"));

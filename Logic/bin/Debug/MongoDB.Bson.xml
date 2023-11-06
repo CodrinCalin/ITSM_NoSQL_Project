@@ -68,7 +68,7 @@
             A static class containing BSON extension methods.
             </summary>
         </member>
-        <member name="M:MongoDB.Bson.BsonExtensionMethods.ToBson``1(``0,MongoDB.Bson.Serialization.IBsonSerializer{``0},MongoDB.Bson.IO.BsonBinaryWriterSettings,System.Action{MongoDB.Bson.Serialization.BsonSerializationContext.Builder},MongoDB.Bson.Serialization.BsonSerializationArgs)">
+        <member name="M:MongoDB.Bson.BsonExtensionMethods.ToBson``1(``0,MongoDB.Bson.Serialization.IBsonSerializer{``0},MongoDB.Bson.IO.BsonBinaryWriterSettings,System.Action{MongoDB.Bson.Serialization.BsonSerializationContext.Builder},MongoDB.Bson.Serialization.BsonSerializationArgs,System.Int32)">
             <summary>
             Serializes an object to a BSON byte array.
             </summary>
@@ -78,9 +78,10 @@
             <param name="writerSettings">The writer settings.</param>
             <param name="configurator">The serialization context configurator.</param>
             <param name="args">The serialization args.</param>
+            <param name="estimatedBsonSize">The estimated size of the serialized object</param>
             <returns>A BSON byte array.</returns>
         </member>
-        <member name="M:MongoDB.Bson.BsonExtensionMethods.ToBson(System.Object,System.Type,MongoDB.Bson.IO.BsonBinaryWriterSettings,MongoDB.Bson.Serialization.IBsonSerializer,System.Action{MongoDB.Bson.Serialization.BsonSerializationContext.Builder},MongoDB.Bson.Serialization.BsonSerializationArgs)">
+        <member name="M:MongoDB.Bson.BsonExtensionMethods.ToBson(System.Object,System.Type,MongoDB.Bson.IO.BsonBinaryWriterSettings,MongoDB.Bson.Serialization.IBsonSerializer,System.Action{MongoDB.Bson.Serialization.BsonSerializationContext.Builder},MongoDB.Bson.Serialization.BsonSerializationArgs,System.Int32)">
             <summary>
             Serializes an object to a BSON byte array.
             </summary>
@@ -90,6 +91,7 @@
             <param name="serializer">The serializer.</param>
             <param name="configurator">The serialization context configurator.</param>
             <param name="args">The serialization args.</param>
+            <param name="estimatedBsonSize">The estimated size of the serialized object.</param>
             <returns>A BSON byte array.</returns>
             <exception cref="T:System.ArgumentNullException">nominalType</exception>
             <exception cref="T:System.ArgumentException">serializer</exception>
@@ -126,7 +128,7 @@
             <param name="obj">The object.</param>
             <param name="writerSettings">The JsonWriter settings.</param>
             <param name="serializer">The serializer.</param>
-            <param name="configurator">The serializastion context configurator.</param>
+            <param name="configurator">The serialization context configurator.</param>
             <param name="args">The serialization args.</param>
             <returns>
             A JSON string.
@@ -6162,6 +6164,16 @@
         <member name="F:MongoDB.Bson.BsonBinarySubType.Encrypted">
             <summary>
             Encrypted binary data.
+            </summary>
+        </member>
+        <member name="F:MongoDB.Bson.BsonBinarySubType.Column">
+            <summary>
+            Column data.
+            </summary>
+        </member>
+        <member name="F:MongoDB.Bson.BsonBinarySubType.Sensitive">
+            <summary>
+            Sensitive data.
             </summary>
         </member>
         <member name="F:MongoDB.Bson.BsonBinarySubType.UserDefined">
@@ -13409,6 +13421,37 @@
             </summary>
             <param name="classMap">The class map.</param>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonClassMap.TryRegisterClassMap``1">
+            <summary>
+            Registers a class map if it is not already registered.
+            </summary>
+            <typeparam name="TClass">The class.</typeparam>
+            <returns>True if this call registered the class map, false if the class map was already registered.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonClassMap.TryRegisterClassMap``1(MongoDB.Bson.Serialization.BsonClassMap{``0})">
+            <summary>
+            Registers a class map if it is not already registered.
+            </summary>
+            <typeparam name="TClass">The class.</typeparam>
+            <param name="classMap">The class map.</param>
+            <returns>True if this call registered the class map, false if the class map was already registered.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonClassMap.TryRegisterClassMap``1(System.Action{MongoDB.Bson.Serialization.BsonClassMap{``0}})">
+            <summary>
+            Registers a class map if it is not already registered.
+            </summary>
+            <typeparam name="TClass">The class.</typeparam>
+            <param name="classMapInitializer">The class map initializer (only called if the class map is not already registered).</param>
+            <returns>True if this call registered the class map, false if the class map was already registered.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonClassMap.TryRegisterClassMap``1(System.Func{MongoDB.Bson.Serialization.BsonClassMap{``0}})">
+            <summary>
+            Registers a class map if it is not already registered.
+            </summary>
+            <typeparam name="TClass">The class.</typeparam>
+            <param name="classMapFactory">The class map factory (only called if the class map is not already registered).</param>
+            <returns>True if this call registered the class map, false if the class map was already registered.</returns>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.BsonClassMap.AutoMap">
             <summary>
             Automaps the class.
@@ -13660,6 +13703,12 @@
             Initializes a new instance of the BsonClassMap class.
             </summary>
             <param name="classMapInitializer">The class map initializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonClassMap`1.#ctor(MongoDB.Bson.Serialization.BsonClassMap)">
+            <summary>
+            Initializes a new instance of the BsonClassMap class.
+            </summary>
+            <param name="baseClassMap">The base class map.</param>
         </member>
         <member name="M:MongoDB.Bson.Serialization.BsonClassMap`1.CreateInstance">
             <summary>
@@ -14317,6 +14366,15 @@
             Represents the information needed to serialize a member.
             </summary>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonSerializationInfo.CreateWithPath(System.Collections.Generic.IEnumerable{System.String},MongoDB.Bson.Serialization.IBsonSerializer,System.Type)">
+            <summary>
+            Creates a new instance of the BsonSerializationinfo class with an element path instead of an element name.
+            </summary>
+            <param name="elementPath">The element path.</param>
+            <param name="serializer">The serializer.</param>
+            <param name="nominalType">The nominal type.</param>
+            <returns>A BsonSerializationInfo.</returns>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.BsonSerializationInfo.#ctor(System.String,MongoDB.Bson.Serialization.IBsonSerializer,System.Type)">
             <summary>
             Initializes a new instance of the BsonSerializationInfo class.
@@ -14327,7 +14385,12 @@
         </member>
         <member name="P:MongoDB.Bson.Serialization.BsonSerializationInfo.ElementName">
             <summary>
-            Gets or sets the dotted element name.
+            Gets the element name.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.BsonSerializationInfo.ElementPath">
+            <summary>
+            Gets element path.
             </summary>
         </member>
         <member name="P:MongoDB.Bson.Serialization.BsonSerializationInfo.Serializer">
@@ -14661,6 +14724,22 @@
             <param name="configurator">The serialization context configurator.</param>
             <param name="args">The serialization args.</param>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonSerializer.TryRegisterSerializer(System.Type,MongoDB.Bson.Serialization.IBsonSerializer)">
+            <summary>
+            Tries to register a serializer for a type.
+            </summary>
+            <param name="serializer">The serializer.</param>
+            <param name="type">The type.</param>
+            <returns>True if the serializer was registered on this call, false if the same serializer was already registered on a previous call, throws an exception if a different serializer was already registered.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonSerializer.TryRegisterSerializer``1(MongoDB.Bson.Serialization.IBsonSerializer{``0})">
+            <summary>
+            Tries to register a serializer for a type.
+            </summary>
+            <typeparam name="T">The type.</typeparam>
+            <param name="serializer">The serializer.</param>
+            <returns>True if the serializer was registered on this call, false if the same serializer was already registered on a previous call, throws an exception if a different serializer was already registered.</returns>
+        </member>
         <member name="T:MongoDB.Bson.Serialization.BsonSerializerRegistry">
             <summary>
             Default, global implementation of an <see cref="T:MongoDB.Bson.Serialization.IBsonSerializerRegistry"/>.
@@ -14704,6 +14783,14 @@
             last provider registered is the first provider consulted.
             </summary>
             <param name="serializationProvider">The serialization provider.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.BsonSerializerRegistry.TryRegisterSerializer(System.Type,MongoDB.Bson.Serialization.IBsonSerializer)">
+            <summary>
+            Tries to register the serializer.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="serializer">The serializer.</param>
+            <returns>True if the serializer was registered on this call, false if the same serializer was already registered on a previous call, throws an exception if a different serializer was already registered.</returns>
         </member>
         <member name="T:MongoDB.Bson.Serialization.CollectionsSerializationProvider">
             <summary>
@@ -15984,8 +16071,7 @@
             as the storage representation.
             Internally the GUID is of the form
             8 bytes: Ticks from DateTime.UtcNow.Ticks
-            3 bytes: hash of machine name
-            2 bytes: low order bytes of process Id
+            5 bytes: Random value from ObjectId spec
             3 bytes: increment
             </summary>
         </member>
@@ -16024,15 +16110,6 @@
             </summary>
             <param name="id">The id to test.</param>
             <returns>True if the Id is empty. False otherwise</returns>
-        </member>
-        <member name="M:MongoDB.Bson.Serialization.IdGenerators.AscendingGuidGenerator.GetCurrentProcessId">
-            <summary>
-            Gets the current process id.  This method exists because of how
-            CAS operates on the call stack, checking for permissions before
-            executing the method.  Hence, if we inlined this call, the calling
-            method would not execute before throwing an exception requiring the
-            try/catch at an even higher level that we don't necessarily control.
-            </summary>
         </member>
         <member name="T:MongoDB.Bson.Serialization.IdGenerators.BsonBinaryDataGuidGenerator">
             <summary>
@@ -16364,18 +16441,20 @@
             <param name="id">The Id.</param>
             <returns>True if the Id is empty.</returns>
         </member>
-        <member name="T:MongoDB.Bson.Serialization.IRepresentationConfigurable">
+        <member name="T:MongoDB.Bson.Serialization.IHasRepresentationSerializer">
             <summary>
             Represents a serializer that has a Representation property.
             </summary>
         </member>
-        <member name="P:MongoDB.Bson.Serialization.IRepresentationConfigurable.Representation">
+        <member name="P:MongoDB.Bson.Serialization.IHasRepresentationSerializer.Representation">
             <summary>
             Gets the representation.
             </summary>
-            <value>
-            The representation.
-            </value>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.IRepresentationConfigurable">
+            <summary>
+            Represents a serializer whose representation can be configured.
+            </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.IRepresentationConfigurable.WithRepresentation(MongoDB.Bson.BsonType)">
             <summary>
@@ -17051,6 +17130,11 @@
         <member name="T:MongoDB.Bson.Serialization.Serializers.BooleanSerializer">
             <summary>
             Represents a serializer for Booleans.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.BooleanSerializer.Instance">
+            <summary>
+            Gets a cached instance of a BooleanSerializer.
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.BooleanSerializer.#ctor">
@@ -17991,6 +18075,11 @@
             Represents a serializer for ByteArrays.
             </summary>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ByteArraySerializer.Instance">
+            <summary>
+            Gets a cached instance of a ByteArraySerializer.
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.ByteArraySerializer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ByteArraySerializer"/> class.
@@ -18386,6 +18475,11 @@
             Represents a serializer for Decimal128s.
             </summary>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.Decimal128Serializer.Decimal128Instance">
+            <summary>
+            Gets a cached instance of a Decimal128Serializer with Decimal128 representation.
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.Decimal128Serializer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.Decimal128Serializer"/> class.
@@ -18453,6 +18547,11 @@
         <member name="T:MongoDB.Bson.Serialization.Serializers.DecimalSerializer">
             <summary>
             Represents a serializer for Decimals.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.DecimalSerializer.Decimal128Instance">
+            <summary>
+            Gets a cached instance of a DecimalSerializer with Decimal128 representation.
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.DecimalSerializer.#ctor">
@@ -18832,6 +18931,15 @@
             <exception cref="T:System.ArgumentException">interfaceType</exception>
             <exception cref="T:System.ArgumentNullException">interfaceType</exception>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DiscriminatedInterfaceSerializer`1.#ctor(MongoDB.Bson.Serialization.Conventions.IDiscriminatorConvention,MongoDB.Bson.Serialization.IBsonSerializer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.DiscriminatedInterfaceSerializer`1" /> class.
+            </summary>
+            <param name="discriminatorConvention">The discriminator convention.</param>
+            <param name="interfaceSerializer">The interface serializer (necessary to support LINQ queries).</param>
+            <exception cref="T:System.ArgumentException">interfaceType</exception>
+            <exception cref="T:System.ArgumentNullException">interfaceType</exception>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.DiscriminatedInterfaceSerializer`1.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
             <summary>
             Deserializes a value.
@@ -18848,6 +18956,9 @@
             <param name="context">The serialization context.</param>
             <param name="args">The serialization args.</param>
             <param name="value">The document.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DiscriminatedInterfaceSerializer`1.TryGetMemberSerializationInfo(System.String,MongoDB.Bson.Serialization.BsonSerializationInfo@)">
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.DiscriminatedWrapperSerializer`1">
             <summary>
@@ -18888,6 +18999,11 @@
         <member name="T:MongoDB.Bson.Serialization.Serializers.DoubleSerializer">
             <summary>
             Represents a serializer for Doubles.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.DoubleSerializer.Instance">
+            <summary>
+            Gets a cached instance of DoubleSerializer;
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.DoubleSerializer.#ctor">
@@ -18953,6 +19069,77 @@
             </summary>
             <param name="representation">The representation.</param>
             <returns>The reconfigured serializer.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.IDowncastingSerializer">
+            <summary>
+            An interface implemented by DowncastingSerializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.IDowncastingSerializer.BaseType">
+            <summary>
+            The base type that the serializer will downcast from.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.IDowncastingSerializer.DerivedSerializer">
+            <summary>
+            The serializer for the derived type.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.IDowncastingSerializer.DerivedType">
+            <summary>
+            The derived type that the serializer will downcast to.
+            </summary>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer">
+            <summary>
+            Static factory class for DowncastingSerializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer.Create(System.Type,System.Type,MongoDB.Bson.Serialization.IBsonSerializer)">
+            <summary>
+            Creates a new DowncastingSerializer.
+            </summary>
+            <param name="baseType">The base type.</param>
+            <param name="derivedType">The derived type.</param>
+            <param name="derivedTypeSerializer">The derived type serializer.</param>
+            <returns>A <see cref="T:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer"/> instance.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2">
+            <summary>
+            A serializer for TBase where the actual values are of type TDerived.
+            </summary>
+            <typeparam name="TBase">The base type.</typeparam>
+            <typeparam name="TDerived">The derived type.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`1})">
+            <summary>
+            Initializes a new instance of DowncastingSerializer.
+            </summary>
+            <param name="derivedSerializer">The derived type serializer.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.BaseType">
+            <inheritdoc/>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.DerivedSerializer">
+            <summary>
+            The serializer for the derived type.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.DerivedType">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.TryGetItemSerializationInfo(MongoDB.Bson.Serialization.BsonSerializationInfo@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.DowncastingSerializer`2.TryGetMemberSerializationInfo(System.String,MongoDB.Bson.Serialization.BsonSerializationInfo@)">
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.DynamicDocumentBaseSerializer`1">
             <summary>
@@ -19409,6 +19596,12 @@
             <param name="args">The deserialization args.</param>
             <returns>A deserialized value.</returns>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.EnumSerializer`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.EnumSerializer`1.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.EnumSerializer`1.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,`0)">
             <summary>
             Serializes a value.
@@ -19423,6 +19616,18 @@
             </summary>
             <param name="representation">The representation.</param>
             <returns>The reconfigured serializer.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.EnumSerializer">
+            <summary>
+            Static factory class for EnumSerializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.EnumSerializer.Create(System.Type)">
+            <summary>
+            Creates a EnumSerializer.
+            </summary>
+            <param name="valueType">The value type.</param>
+            <returns>A EnumSerializer</returns>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.ExpandoObjectSerializer">
             <summary>
@@ -19479,6 +19684,11 @@
         <member name="T:MongoDB.Bson.Serialization.Serializers.GuidSerializer">
             <summary>
             Represents a serializer for Guids.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.GuidSerializer.StandardInstance">
+            <summary>
+            Gets a cached instance of a GuidSerializer with Standard representation.
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.GuidSerializer.#ctor">
@@ -19539,6 +19749,61 @@
             Returns a serializer that has been reconfigured with the specified representation.
             </summary>
             <param name="representation">The representation.</param>
+            <returns>The reconfigured serializer.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3">
+            <summary>
+            Represents a serializer for IEnumerable and any other derived interface implemented by TCollection.
+            </summary>
+            <typeparam name="TIEnumerable">The type of an IEnumerable interface.</typeparam>
+            <typeparam name="TItem">The type of the items.</typeparam>
+            <typeparam name="TCollection">The type of the collection used when deserializing.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.#ctor">
+            <summary>
+            Initializes a new instance of the IEnumerableDeserializingAsCollectionSerializer class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`1})">
+            <summary>
+            Initializes a new instance of the IEnumerableDeserializingAsCollectionSerializer class.
+            </summary>
+            <param name="itemSerializer">The item serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the IEnumerableDeserializingAsCollectionSerializer class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.ItemSerializer">
+            <summary>
+            Gets the item serializer.
+            </summary>
+            <value>
+            The item serializer.
+            </value>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.TryGetItemSerializationInfo(MongoDB.Bson.Serialization.BsonSerializationInfo@)">
+            <summary>
+            Tries to get the serialization info for the individual items of the array.
+            </summary>
+            <param name="serializationInfo">The serialization information.</param>
+            <returns>
+            The serialization info for the items.
+            </returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IEnumerableDeserializingAsCollectionSerializer`3.WithItemSerializer(MongoDB.Bson.Serialization.IBsonSerializer{`1})">
+            <summary>
+            Returns a serializer that has been reconfigured with the specified item serializer.
+            </summary>
+            <param name="itemSerializer">The item serializer.</param>
             <returns>The reconfigured serializer.</returns>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.ImpliedImplementationInterfaceSerializer`2">
@@ -19719,6 +19984,11 @@
             Represents a serializer for Int32.
             </summary>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.Int32Serializer.Instance">
+            <summary>
+            Gets a cached instance of an Int32Serializer;
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.Int32Serializer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.Int32Serializer"/> class.
@@ -19788,6 +20058,11 @@
             Represents a serializer for Int64s.
             </summary>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.Int64Serializer.Instance">
+            <summary>
+            Gets a cached instance of an Int64Serializer;
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.Int64Serializer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.Int64Serializer"/> class.
@@ -19851,6 +20126,41 @@
             </summary>
             <param name="representation">The representation.</param>
             <returns>The reconfigured serializer.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer`1">
+            <summary>
+            Represents a serializer for IOrderedEnumerable<typeparamref name="TItem"/>.
+            </summary>
+            <typeparam name="TItem">The type of the items.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer`1.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},System.String)">
+            <summary>
+            Initializes a new instance of IOrderedEnumerableSerializer.
+            </summary>
+            <param name="itemSerializer">The item serializer.</param>
+            <param name="thenByExceptionMessage">The message to use when throwing an exception because ThenBy is not supported.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer`1.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer`1.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Linq.IOrderedEnumerable{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer`1.TryGetItemSerializationInfo(MongoDB.Bson.Serialization.BsonSerializationInfo@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer">
+            <summary>
+            A factory class for instances of IOrderedEnumerableSerializer&lt;TItem>.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IOrderedEnumerableSerializer.Create(MongoDB.Bson.Serialization.IBsonSerializer,System.String)">
+            <summary>
+            Creates an instance IOrderedEnumerableSerializer&lt;TItem>.
+            </summary>
+            <param name="itemSerializer">The item serializer.</param>
+            <param name="thenByExceptionMessage">The message to use when throwing an exception because ThenBy is not supported.</param>
+            <returns>An IOrderedEnumerableSerializer&lt;TItem>.</returns>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.IPAddressSerializer">
             <summary>
@@ -20032,6 +20342,28 @@
             <param name="args">The serialization args.</param>
             <param name="value">The object.</param>
         </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.INullableSerializer">
+            <summary>
+            An interface used by the LINQ3 translators to access the value serializer without needing to use reflection.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.INullableSerializer.ValueSerializer">
+            <summary>
+            Gets the value serializer.
+            </summary>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.NullableSerializer">
+            <summary>
+            Static factory class for NullableSerializers.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.NullableSerializer.Create(MongoDB.Bson.Serialization.IBsonSerializer)">
+            <summary>
+            Creates a NullableSerializer.
+            </summary>
+            <param name="valueSerializer">The value serializer.</param>
+            <returns>A NullableSerializer</returns>
+        </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.NullableSerializer`1">
             <summary>
             Represents a serializer for nullable values.
@@ -20055,6 +20387,11 @@
             </summary>
             <param name="serializerRegistry">The serializer registry.</param>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.NullableSerializer`1.ValueSerializer">
+            <summary>
+            Gets the value serializer.
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.NullableSerializer`1.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
             <summary>
             Deserializes a value.
@@ -20062,6 +20399,12 @@
             <param name="context">The deserialization context.</param>
             <param name="args">The deserialization args.</param>
             <returns>A deserialized value.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.NullableSerializer`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.NullableSerializer`1.GetHashCode">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.NullableSerializer`1.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Nullable{`0})">
             <summary>
@@ -20083,6 +20426,11 @@
         <member name="T:MongoDB.Bson.Serialization.Serializers.ObjectIdSerializer">
             <summary>
             Represents a serializer for ObjectIds.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectIdSerializer.Instance">
+            <summary>
+            Gets a cached instance of an ObjectId serializer.
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectIdSerializer.#ctor">
@@ -20132,6 +20480,26 @@
             Represents a serializer for objects.
             </summary>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.AllAllowedTypes">
+            <summary>
+            An allowed types function that returns true for all types.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.DefaultAllowedTypes">
+            <summary>
+            An allowed types function that returns true for framework types known to be safe.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.Instance">
+            <summary>
+            Gets the standard instance.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.NoAllowedTypes">
+            <summary>
+            An allowed types function that returns false for all types.
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ObjectSerializer"/> class.
@@ -20151,13 +20519,55 @@
             <param name="discriminatorConvention">The discriminator convention.</param>
             <param name="guidRepresentation">The Guid representation.</param>
         </member>
-        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.Instance">
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.#ctor(System.Func{System.Type,System.Boolean})">
             <summary>
-            Gets the standard instance.
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ObjectSerializer"/> class.
             </summary>
-            <value>
-            The standard instance.
-            </value>
+            <param name="allowedTypes">A delegate that determines what types are allowed.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.#ctor(MongoDB.Bson.Serialization.Conventions.IDiscriminatorConvention,System.Func{System.Type,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ObjectSerializer"/> class.
+            </summary>
+            <param name="discriminatorConvention">The discriminator convention.</param>
+            <param name="allowedTypes">A delegate that determines what types are allowed.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.#ctor(MongoDB.Bson.Serialization.Conventions.IDiscriminatorConvention,MongoDB.Bson.GuidRepresentation,System.Func{System.Type,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ObjectSerializer"/> class.
+            </summary>
+            <param name="discriminatorConvention">The discriminator convention.</param>
+            <param name="guidRepresentation">The Guid representation.</param>
+            <param name="allowedTypes">A delegate that determines what types are allowed.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.#ctor(MongoDB.Bson.Serialization.Conventions.IDiscriminatorConvention,MongoDB.Bson.GuidRepresentation,System.Func{System.Type,System.Boolean},System.Func{System.Type,System.Boolean})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ObjectSerializer"/> class.
+            </summary>
+            <param name="discriminatorConvention">The discriminator convention.</param>
+            <param name="guidRepresentation">The Guid representation.</param>
+            <param name="allowedDeserializationTypes">A delegate that determines what types are allowed to be deserialized.</param>
+            <param name="allowedSerializationTypes">A delegate that determines what types are allowed to be serialized.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.AllowedDeserializationTypes">
+            <summary>
+            Gets the AllowedDeserializationTypes filter;
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.AllowedSerializationTypes">
+            <summary>
+            Gets the AllowedSerializationTypes filter;
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.DiscriminatorConvention">
+            <summary>
+            Gets the discriminator convention.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.GuidRepresentation">
+            <summary>
+            Gets the GuidRepresentation.
+            </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
             <summary>
@@ -20167,6 +20577,12 @@
             <param name="args">The deserialization args.</param>
             <returns>A deserialized value.</returns>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Object)">
             <summary>
             Serializes a value.
@@ -20174,6 +20590,13 @@
             <param name="context">The serialization context.</param>
             <param name="args">The serialization args.</param>
             <param name="value">The object.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ObjectSerializer.WithDiscriminatorConvention(MongoDB.Bson.Serialization.Conventions.IDiscriminatorConvention)">
+            <summary>
+            Returns a new ObjectSerializer configured the same but with the specified discriminator convention.
+            </summary>
+            <param name="discriminatorConvention">The discriminator convention.</param>
+            <returns>An ObjectSerializer with the specified discriminator convention.</returns>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.PartiallyRawBsonDocumentSerializer">
             <summary>
@@ -20385,6 +20808,9 @@
             <param name="args">The serialization args.</param>
             <param name="value">The object.</param>
         </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.RawBsonDocumentSerializer.TryGetMemberSerializationInfo(System.String,MongoDB.Bson.Serialization.BsonSerializationInfo@)">
+            <inheritdoc/>
+        </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.ReadOnlyCollectionSerializer`1">
             <summary>
             Represents a serializer for readonly collection.
@@ -20527,6 +20953,58 @@
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.ReadOnlyDictionaryInterfaceImplementerSerializer`3.FinalizeAccumulator(System.Collections.Generic.ICollection{System.Collections.Generic.KeyValuePair{`1,`2}})">
             <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.RegexSerializer">
+            <summary>
+            Represents a serializer for Regex.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.RegexSerializer.RegularExpressionInstance">
+            <summary>
+            Gets a cached instance of a RegexSerializer with RegularExpression representation.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.RegexSerializer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.RegexSerializer"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.RegexSerializer.#ctor(MongoDB.Bson.BsonType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.RegexSerializer"/> class.
+            </summary>
+            <param name="representation">The representation.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.RegexSerializer.Representation">
+            <summary>
+            Gets the representation.
+            </summary>
+            <value>
+            The representation.
+            </value>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.RegexSerializer.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <summary>
+            Deserializes a value.
+            </summary>
+            <param name="context">The deserialization context.</param>
+            <param name="args">The deserialization args.</param>
+            <returns>A deserialized value.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.RegexSerializer.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Serializes a value.
+            </summary>
+            <param name="context">The serialization context.</param>
+            <param name="args">The serialization args.</param>
+            <param name="value">The object.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.RegexSerializer.WithRepresentation(MongoDB.Bson.BsonType)">
+            <summary>
+            Returns a serializer that has been reconfigured with the specified representation.
+            </summary>
+            <param name="representation">The representation.</param>
+            <returns>The reconfigured serializer.</returns>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.SByteSerializer">
             <summary>
@@ -20942,6 +21420,11 @@
             Represents a serializer for Strings.
             </summary>
         </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.StringSerializer.Instance">
+            <summary>
+            Gets a cached instance of a default string serializer.
+            </summary>
+        </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.StringSerializer.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.StringSerializer"/> class.
@@ -21116,6 +21599,38 @@
             The reconfigured serializer.
             </returns>
         </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.IBsonTupleSerializer">
+            <summary>
+            An interface implemented by tuple serializers.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.IBsonTupleSerializer.GetItemSerializer(System.Int32)">
+            <summary>
+            Gets ths serializer for an item.
+            </summary>
+            <param name="itemNumber">The item number.</param>
+            <returns>The serializer for the item.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer">
+            <summary>
+            A factory class for TupleSerializers.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer.Create(System.Collections.Generic.IEnumerable{MongoDB.Bson.Serialization.IBsonSerializer})">
+            <summary>
+            Creates a TupleSerializer.
+            </summary>
+            <param name="itemSerializers">The item serializers.</param>
+            <returns>A TupleSerializer.</returns>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer.TryParseItemName(System.String,System.Int32@)">
+            <summary>
+            Tries to parse an item name to an item number.
+            </summary>
+            <param name="itemName">The item name.</param>
+            <param name="itemNumber">The item number.</param>
+            <returns>True if the item name was valid.</returns>
+        </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`1">
             <summary>
             Represents a serializer for a <see cref="T:System.Tuple`1"/>.
@@ -21145,20 +21660,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`1.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`1.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`1.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`2">
             <summary>
@@ -21196,20 +21704,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`2.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`2.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`2.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`3">
             <summary>
@@ -21254,20 +21755,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`3.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`3.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`3.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1,`2})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`4">
             <summary>
@@ -21319,20 +21813,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`4.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`4.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`4.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1,`2,`3})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`5">
             <summary>
@@ -21391,20 +21878,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`5.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`5.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`5.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1,`2,`3,`4})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`6">
             <summary>
@@ -21470,20 +21950,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`6.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`6.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`6.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1,`2,`3,`4,`5})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`7">
             <summary>
@@ -21556,20 +22029,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`7.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`7.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`7.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1,`2,`3,`4,`5,`6})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TupleSerializer`8">
             <summary>
@@ -21649,20 +22115,13 @@
             </summary>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`8.DeserializeValue(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
-            <summary>
-            Deserializes the value.
-            </summary>
-            <param name="context">The context.</param>
-            <param name="args">The deserialization args.</param>
-            <returns>A deserialized value.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`8.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:MongoDB.Bson.Serialization.Serializers.TupleSerializer`8.SerializeValue(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.Tuple{`0,`1,`2,`3,`4,`5,`6,`7})">
-            <summary>
-            Serializes the value.
-            </summary>
-            <param name="context">The serialization context.</param>
-            <param name="args">The serialization args.</param>
-            <param name="value">The value.</param>
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.TwoDimensionalArraySerializer`1">
             <summary>
@@ -21977,6 +22436,510 @@
             <param name="context">The serialization context.</param>
             <param name="args">The serialization args.</param>
             <param name="value">The object.</param>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer">
+            <summary>
+            A factory class for ValueTupleSerializers.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer.Create(System.Collections.Generic.IEnumerable{MongoDB.Bson.Serialization.IBsonSerializer})">
+            <summary>
+            Creates a ValueTupleSerializer.
+            </summary>
+            <param name="itemSerializers">The item serializers.</param>
+            <returns>A ValueTupleSerializer.</returns>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`1"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`1.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`2"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`2.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`3"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+            <typeparam name="T3">The type of item 3.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1},MongoDB.Bson.Serialization.IBsonSerializer{`2})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+            <param name="item3Serializer">The Item3 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.Item3Serializer">
+            <summary>
+            Gets the Item3 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`3.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1,`2})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`4"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+            <typeparam name="T3">The type of item 3.</typeparam>
+            <typeparam name="T4">The type of item 4.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1},MongoDB.Bson.Serialization.IBsonSerializer{`2},MongoDB.Bson.Serialization.IBsonSerializer{`3})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+            <param name="item3Serializer">The Item3 serializer.</param>
+            <param name="item4Serializer">The Item4 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.Item3Serializer">
+            <summary>
+            Gets the Item3 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.Item4Serializer">
+            <summary>
+            Gets the Item4 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`4.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1,`2,`3})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`5"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+            <typeparam name="T3">The type of item 3.</typeparam>
+            <typeparam name="T4">The type of item 4.</typeparam>
+            <typeparam name="T5">The type of item 5.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1},MongoDB.Bson.Serialization.IBsonSerializer{`2},MongoDB.Bson.Serialization.IBsonSerializer{`3},MongoDB.Bson.Serialization.IBsonSerializer{`4})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+            <param name="item3Serializer">The Item3 serializer.</param>
+            <param name="item4Serializer">The Item4 serializer.</param>
+            <param name="item5Serializer">The Item5 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Item3Serializer">
+            <summary>
+            Gets the Item3 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Item4Serializer">
+            <summary>
+            Gets the Item4 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Item5Serializer">
+            <summary>
+            Gets the Item5 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`5.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1,`2,`3,`4})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`6"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+            <typeparam name="T3">The type of item 3.</typeparam>
+            <typeparam name="T4">The type of item 4.</typeparam>
+            <typeparam name="T5">The type of item 5.</typeparam>
+            <typeparam name="T6">The type of item 6.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1},MongoDB.Bson.Serialization.IBsonSerializer{`2},MongoDB.Bson.Serialization.IBsonSerializer{`3},MongoDB.Bson.Serialization.IBsonSerializer{`4},MongoDB.Bson.Serialization.IBsonSerializer{`5})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+            <param name="item3Serializer">The Item3 serializer.</param>
+            <param name="item4Serializer">The Item4 serializer.</param>
+            <param name="item5Serializer">The Item5 serializer.</param>
+            <param name="item6Serializer">The Item6 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Item3Serializer">
+            <summary>
+            Gets the Item3 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Item4Serializer">
+            <summary>
+            Gets the Item4 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Item5Serializer">
+            <summary>
+            Gets the Item5 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Item6Serializer">
+            <summary>
+            Gets the Item6 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`6.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1,`2,`3,`4,`5})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`7"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+            <typeparam name="T3">The type of item 3.</typeparam>
+            <typeparam name="T4">The type of item 4.</typeparam>
+            <typeparam name="T5">The type of item 5.</typeparam>
+            <typeparam name="T6">The type of item 6.</typeparam>
+            <typeparam name="T7">The type of item 7.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1},MongoDB.Bson.Serialization.IBsonSerializer{`2},MongoDB.Bson.Serialization.IBsonSerializer{`3},MongoDB.Bson.Serialization.IBsonSerializer{`4},MongoDB.Bson.Serialization.IBsonSerializer{`5},MongoDB.Bson.Serialization.IBsonSerializer{`6})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+            <param name="item3Serializer">The Item3 serializer.</param>
+            <param name="item4Serializer">The Item4 serializer.</param>
+            <param name="item5Serializer">The Item5 serializer.</param>
+            <param name="item6Serializer">The Item6 serializer.</param>
+            <param name="item7Serializer">The Item7 serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item3Serializer">
+            <summary>
+            Gets the Item3 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item4Serializer">
+            <summary>
+            Gets the Item4 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item5Serializer">
+            <summary>
+            Gets the Item5 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item6Serializer">
+            <summary>
+            Gets the Item6 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Item7Serializer">
+            <summary>
+            Gets the Item7 serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`7.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1,`2,`3,`4,`5,`6})">
+            <inheritdoc/>
+        </member>
+        <member name="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8">
+            <summary>
+            Represents a serializer for a <see cref="T:System.ValueTuple`8"/>.
+            </summary>
+            <typeparam name="T1">The type of item 1.</typeparam>
+            <typeparam name="T2">The type of item 2.</typeparam>
+            <typeparam name="T3">The type of item 3.</typeparam>
+            <typeparam name="T4">The type of item 4.</typeparam>
+            <typeparam name="T5">The type of item 5.</typeparam>
+            <typeparam name="T6">The type of item 6.</typeparam>
+            <typeparam name="T7">The type of item 7.</typeparam>
+            <typeparam name="TRest">The type of the rest item.</typeparam>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8"/> class.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.#ctor(MongoDB.Bson.Serialization.IBsonSerializer{`0},MongoDB.Bson.Serialization.IBsonSerializer{`1},MongoDB.Bson.Serialization.IBsonSerializer{`2},MongoDB.Bson.Serialization.IBsonSerializer{`3},MongoDB.Bson.Serialization.IBsonSerializer{`4},MongoDB.Bson.Serialization.IBsonSerializer{`5},MongoDB.Bson.Serialization.IBsonSerializer{`6},MongoDB.Bson.Serialization.IBsonSerializer{`7})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8"/> class.
+            </summary>
+            <param name="item1Serializer">The Item1 serializer.</param>
+            <param name="item2Serializer">The Item2 serializer.</param>
+            <param name="item3Serializer">The Item3 serializer.</param>
+            <param name="item4Serializer">The Item4 serializer.</param>
+            <param name="item5Serializer">The Item5 serializer.</param>
+            <param name="item6Serializer">The Item6 serializer.</param>
+            <param name="item7Serializer">The Item7 serializer.</param>
+            <param name="restSerializer">The Rest serializer.</param>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.#ctor(MongoDB.Bson.Serialization.IBsonSerializerRegistry)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8" /> class.
+            </summary>
+            <param name="serializerRegistry">The serializer registry.</param>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item1Serializer">
+            <summary>
+            Gets the Item1 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item2Serializer">
+            <summary>
+            Gets the Item2 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item3Serializer">
+            <summary>
+            Gets the Item3 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item4Serializer">
+            <summary>
+            Gets the Item4 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item5Serializer">
+            <summary>
+            Gets the Item5 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item6Serializer">
+            <summary>
+            Gets the Item6 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Item7Serializer">
+            <summary>
+            Gets the Item7 serializer.
+            </summary>
+        </member>
+        <member name="P:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.RestSerializer">
+            <summary>
+            Gets the Rest serializer.
+            </summary>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Deserialize(MongoDB.Bson.Serialization.BsonDeserializationContext,MongoDB.Bson.Serialization.BsonDeserializationArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.GetItemSerializer(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:MongoDB.Bson.Serialization.Serializers.ValueTupleSerializer`8.Serialize(MongoDB.Bson.Serialization.BsonSerializationContext,MongoDB.Bson.Serialization.BsonSerializationArgs,System.ValueTuple{`0,`1,`2,`3,`4,`5,`6,`7})">
+            <inheritdoc/>
         </member>
         <member name="T:MongoDB.Bson.Serialization.Serializers.VersionSerializer">
             <summary>
