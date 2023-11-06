@@ -19,6 +19,7 @@ namespace DemoApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm()); // Change this to the form you want to start with
+          
         }
     }
 }
