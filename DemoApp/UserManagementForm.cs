@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,23 @@ namespace DemoApp
 {
     public partial class UserManagementForm : Form
     {
-        public UserManagementForm()
+        Employee employee;
+        public UserManagementForm(Employee employee)
         {
             InitializeComponent();
+            this.employee = employee;
+        }
+
+        private void buttonIncidentManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDashboard_Click(object sender, EventArgs e)
+        {
+            DashboardForm dashboardForm = new DashboardForm(employee);
+            dashboardForm.Show();
+            this.Hide();
         }
     }
 }

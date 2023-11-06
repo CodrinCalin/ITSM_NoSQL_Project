@@ -42,9 +42,10 @@
             // 
             this.pictureBoxGarden.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGarden.Image")));
             this.pictureBoxGarden.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxGarden.InitialImage")));
-            this.pictureBoxGarden.Location = new System.Drawing.Point(1, 1);
+            this.pictureBoxGarden.Location = new System.Drawing.Point(2, 2);
+            this.pictureBoxGarden.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxGarden.Name = "pictureBoxGarden";
-            this.pictureBoxGarden.Size = new System.Drawing.Size(200, 83);
+            this.pictureBoxGarden.Size = new System.Drawing.Size(300, 128);
             this.pictureBoxGarden.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxGarden.TabIndex = 12;
             this.pictureBoxGarden.TabStop = false;
@@ -54,9 +55,10 @@
             this.labelLicense.AutoSize = true;
             this.labelLicense.BackColor = System.Drawing.Color.White;
             this.labelLicense.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLicense.Location = new System.Drawing.Point(409, 45);
+            this.labelLicense.Location = new System.Drawing.Point(614, 69);
+            this.labelLicense.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLicense.Name = "labelLicense";
-            this.labelLicense.Size = new System.Drawing.Size(233, 20);
+            this.labelLicense.Size = new System.Drawing.Size(351, 29);
             this.labelLicense.TabIndex = 11;
             this.labelLicense.Text = "Licensed to: The Garden Group";
             // 
@@ -64,52 +66,62 @@
             // 
             this.labelNoDesk.AutoSize = true;
             this.labelNoDesk.Font = new System.Drawing.Font("Book Antiqua", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNoDesk.Location = new System.Drawing.Point(506, 4);
+            this.labelNoDesk.Location = new System.Drawing.Point(759, 6);
+            this.labelNoDesk.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNoDesk.Name = "labelNoDesk";
-            this.labelNoDesk.Size = new System.Drawing.Size(139, 39);
+            this.labelNoDesk.Size = new System.Drawing.Size(206, 57);
             this.labelNoDesk.TabIndex = 10;
             this.labelNoDesk.Text = "NoDesk";
             // 
             // buttonUserManagement
             // 
-            this.buttonUserManagement.Location = new System.Drawing.Point(428, 84);
+            this.buttonUserManagement.BackColor = System.Drawing.Color.PaleGreen;
+            this.buttonUserManagement.Enabled = false;
+            this.buttonUserManagement.Location = new System.Drawing.Point(642, 129);
+            this.buttonUserManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonUserManagement.Name = "buttonUserManagement";
-            this.buttonUserManagement.Size = new System.Drawing.Size(216, 39);
+            this.buttonUserManagement.Size = new System.Drawing.Size(324, 60);
             this.buttonUserManagement.TabIndex = 9;
             this.buttonUserManagement.Text = "User Management";
-            this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.UseVisualStyleBackColor = false;
             // 
             // buttonIncidentManagement
             // 
-            this.buttonIncidentManagement.Location = new System.Drawing.Point(214, 84);
+            this.buttonIncidentManagement.Location = new System.Drawing.Point(321, 129);
+            this.buttonIncidentManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonIncidentManagement.Name = "buttonIncidentManagement";
-            this.buttonIncidentManagement.Size = new System.Drawing.Size(216, 39);
+            this.buttonIncidentManagement.Size = new System.Drawing.Size(324, 60);
             this.buttonIncidentManagement.TabIndex = 8;
             this.buttonIncidentManagement.Text = "Incident Management";
             this.buttonIncidentManagement.UseVisualStyleBackColor = true;
+            this.buttonIncidentManagement.Click += new System.EventHandler(this.buttonIncidentManagement_Click);
             // 
             // buttonDashboard
             // 
-            this.buttonDashboard.Location = new System.Drawing.Point(1, 84);
+            this.buttonDashboard.Location = new System.Drawing.Point(2, 129);
+            this.buttonDashboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDashboard.Name = "buttonDashboard";
-            this.buttonDashboard.Size = new System.Drawing.Size(216, 39);
+            this.buttonDashboard.Size = new System.Drawing.Size(324, 60);
             this.buttonDashboard.TabIndex = 7;
             this.buttonDashboard.Text = "Dashboard";
             this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Click += new System.EventHandler(this.buttonDashboard_Click);
             // 
             // UserManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(644, 508);
+            this.ClientSize = new System.Drawing.Size(966, 782);
             this.Controls.Add(this.pictureBoxGarden);
             this.Controls.Add(this.labelLicense);
             this.Controls.Add(this.labelNoDesk);
             this.Controls.Add(this.buttonUserManagement);
             this.Controls.Add(this.buttonIncidentManagement);
             this.Controls.Add(this.buttonDashboard);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UserManagementForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserManagementForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).EndInit();
             this.ResumeLayout(false);

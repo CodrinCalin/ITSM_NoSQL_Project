@@ -99,13 +99,15 @@
             // 
             // buttonIncidentManagement
             // 
+            this.buttonIncidentManagement.BackColor = System.Drawing.Color.PaleGreen;
+            this.buttonIncidentManagement.Enabled = false;
             this.buttonIncidentManagement.Location = new System.Drawing.Point(321, 129);
             this.buttonIncidentManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonIncidentManagement.Name = "buttonIncidentManagement";
             this.buttonIncidentManagement.Size = new System.Drawing.Size(324, 60);
             this.buttonIncidentManagement.TabIndex = 8;
             this.buttonIncidentManagement.Text = "Incident Management";
-            this.buttonIncidentManagement.UseVisualStyleBackColor = true;
+            this.buttonIncidentManagement.UseVisualStyleBackColor = false;
             // 
             // buttonDashboard
             // 
