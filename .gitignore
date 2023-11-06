@@ -414,6 +414,9 @@ obj/
 /wwwroot/node_modules
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
+
+#caches
 *.cache
 Logic/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 Logic/obj/Debug/Logic.csproj.AssemblyReference.cache
+
