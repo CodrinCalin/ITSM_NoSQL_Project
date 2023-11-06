@@ -59,7 +59,6 @@
             // 
             // buttonDashboard
             // 
-            this.buttonDashboard.Enabled = false;
             this.buttonDashboard.Location = new System.Drawing.Point(2, 129);
             this.buttonDashboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDashboard.Name = "buttonDashboard";
@@ -70,7 +69,6 @@
             // 
             // buttonIncidentManagement
             // 
-            this.buttonIncidentManagement.Enabled = false;
             this.buttonIncidentManagement.Location = new System.Drawing.Point(321, 129);
             this.buttonIncidentManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonIncidentManagement.Name = "buttonIncidentManagement";
@@ -81,7 +79,6 @@
             // 
             // buttonUserManagement
             // 
-            this.buttonUserManagement.Enabled = false;
             this.buttonUserManagement.Location = new System.Drawing.Point(642, 129);
             this.buttonUserManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonUserManagement.Name = "buttonUserManagement";
@@ -255,7 +252,6 @@
             this.Controls.Add(this.buttonDashboard);
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).EndInit();
             this.ResumeLayout(false);
