@@ -415,3 +415,5 @@ obj/
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
 *.cache
+Logic/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+Logic/obj/Debug/Logic.csproj.AssemblyReference.cache
