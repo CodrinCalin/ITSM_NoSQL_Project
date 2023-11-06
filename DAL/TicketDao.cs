@@ -29,6 +29,13 @@ namespace DAL
             return tickets;
         }
 
+        public List<Ticket> GetTicketsBaseOnEmployeeId(Employee employee)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("EmployeeID", employee.Id);
+            List<Ticket> tickets = collection.Find(filter).ToList();
+            return tickets;
+        }
+
         public void CreateTicket(Ticket ticket)
         {
             collection.InsertOne(ticket);

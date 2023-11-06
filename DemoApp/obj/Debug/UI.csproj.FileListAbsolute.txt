@@ -167,3 +167,4 @@ C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CoreC
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.CopyComplete
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.exe
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.pdb
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.CreateTicketForm.resources
