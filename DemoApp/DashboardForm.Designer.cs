@@ -97,6 +97,7 @@
             this.buttonUserManagement.TabIndex = 9;
             this.buttonUserManagement.Text = "User Management";
             this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
             // 
             // buttonIncidentManagement
             // 
@@ -107,16 +108,19 @@
             this.buttonIncidentManagement.TabIndex = 8;
             this.buttonIncidentManagement.Text = "Incident Management";
             this.buttonIncidentManagement.UseVisualStyleBackColor = true;
+            this.buttonIncidentManagement.Click += new System.EventHandler(this.buttonIncidentManagement_Click);
             // 
             // buttonDashboard
             // 
+            this.buttonDashboard.BackColor = System.Drawing.Color.PaleGreen;
+            this.buttonDashboard.Enabled = false;
             this.buttonDashboard.Location = new System.Drawing.Point(2, 129);
             this.buttonDashboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonDashboard.Name = "buttonDashboard";
             this.buttonDashboard.Size = new System.Drawing.Size(324, 60);
             this.buttonDashboard.TabIndex = 7;
             this.buttonDashboard.Text = "Dashboard";
-            this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.UseVisualStyleBackColor = false;
             // 
             // buttonShowList
             // 
@@ -129,6 +133,7 @@
             this.buttonShowList.TabIndex = 33;
             this.buttonShowList.Text = "Show List";
             this.buttonShowList.UseVisualStyleBackColor = false;
+            this.buttonShowList.Click += new System.EventHandler(this.buttonShowList_Click);
             // 
             // labelPastDeadlineInc
             // 
@@ -313,6 +318,7 @@
             this.Controls.Add(this.buttonDashboard);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DashboardForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DashboardForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).EndInit();
             this.ResumeLayout(false);

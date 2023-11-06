@@ -106,6 +106,10 @@ namespace DemoApp
                 if (ticket.Status == TicketStatus.Open)
                 {
                     totalTicketsOpen++;
+                    if (ticket.Deadline < DateTime.Now)
+                    {
+                        totalTicketsPastDeadline++;
+                    }
                 }
                 else if (ticket.Status == TicketStatus.Resolved)
                 {
@@ -115,13 +119,30 @@ namespace DemoApp
                 {
                     totalTicketsClosed++;
                 }
-                else if (ticket.Deadline > DateTime.Now)
-                {
-                    totalTicketsPastDeadline++;
-                }
+                
             }
         }
 
+        private void buttonShowList_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void buttonIncidentManagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonUserManagement_Click(object sender, EventArgs e)
+        {
+            UserManagementForm userManagementForm = new UserManagementForm(employee);
+            userManagementForm.Show();
+            this.Hide();
+        }
+
+        private void ChangeUI(IncidentManagementForm managementForm)
+        {
+           
+        }
     }
 }
