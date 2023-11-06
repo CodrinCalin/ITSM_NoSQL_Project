@@ -30,8 +30,6 @@
         {
             this.buttonGoBack = new System.Windows.Forms.Button();
             this.listViewIncidents = new System.Windows.Forms.ListView();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.textBoxInput = new System.Windows.Forms.TextBox();
             this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,6 +37,8 @@
             this.columnHeaderPriority = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.textBoxInput = new System.Windows.Forms.TextBox();
             this.labelSearchParameter = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -76,27 +76,6 @@
             this.listViewIncidents.UseCompatibleStateImageBehavior = false;
             this.listViewIncidents.View = System.Windows.Forms.View.Details;
             // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("ROG Fonts", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.ForeColor = System.Drawing.Color.Brown;
-            this.labelTitle.Location = new System.Drawing.Point(238, 22);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(551, 38);
-            this.labelTitle.TabIndex = 2;
-            this.labelTitle.Text = "Search for an Incident ";
-            // 
-            // textBoxInput
-            // 
-            this.textBoxInput.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxInput.Location = new System.Drawing.Point(407, 140);
-            this.textBoxInput.Name = "textBoxInput";
-            this.textBoxInput.Size = new System.Drawing.Size(425, 39);
-            this.textBoxInput.TabIndex = 3;
-            this.textBoxInput.TextChanged += new System.EventHandler(this.TextBoxInput_TextChanged);
-            // 
             // columnHeaderDate
             // 
             this.columnHeaderDate.Text = "Date";
@@ -132,6 +111,27 @@
             this.columnHeaderType.Text = "Type";
             this.columnHeaderType.Width = 100;
             // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("ROG Fonts", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.ForeColor = System.Drawing.Color.Brown;
+            this.labelTitle.Location = new System.Drawing.Point(279, 18);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(437, 43);
+            this.labelTitle.TabIndex = 2;
+            this.labelTitle.Text = "Filter Incidents";
+            // 
+            // textBoxInput
+            // 
+            this.textBoxInput.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxInput.Location = new System.Drawing.Point(407, 140);
+            this.textBoxInput.Name = "textBoxInput";
+            this.textBoxInput.Size = new System.Drawing.Size(425, 39);
+            this.textBoxInput.TabIndex = 3;
+            this.textBoxInput.TextChanged += new System.EventHandler(this.TextBoxInput_TextChanged);
+            // 
             // labelSearchParameter
             // 
             this.labelSearchParameter.AutoSize = true;
@@ -142,7 +142,7 @@
             this.labelSearchParameter.TabIndex = 4;
             this.labelSearchParameter.Text = "Insert Search Parameter";
             // 
-            // SearchingIncidentsForm
+            // FilteringIncidentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,7 +153,7 @@
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.listViewIncidents);
             this.Controls.Add(this.buttonGoBack);
-            this.Name = "SearchingIncidentsForm";
+            this.Name = "FilteringIncidentsForm";
             this.Text = "SearchingIncidentsForm";
             this.ResumeLayout(false);
             this.PerformLayout();
