@@ -47,6 +47,10 @@
             this.progressBarClosed = new System.Windows.Forms.ProgressBar();
             this.progressBarResolved = new System.Windows.Forms.ProgressBar();
             this.progressBarOpen = new System.Windows.Forms.ProgressBar();
+            this.labelOpenProgress = new System.Windows.Forms.Label();
+            this.labelResolvedProgress = new System.Windows.Forms.Label();
+            this.labelClosedProgress = new System.Windows.Forms.Label();
+            this.labelPastDeadlineProgress = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,6 +209,7 @@
             this.progressBarPastDeadline.Location = new System.Drawing.Point(16, 533);
             this.progressBarPastDeadline.Name = "progressBarPastDeadline";
             this.progressBarPastDeadline.Size = new System.Drawing.Size(316, 45);
+            this.progressBarPastDeadline.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarPastDeadline.TabIndex = 22;
             // 
             // progressBarClosed
@@ -213,6 +218,7 @@
             this.progressBarClosed.Location = new System.Drawing.Point(16, 450);
             this.progressBarClosed.Name = "progressBarClosed";
             this.progressBarClosed.Size = new System.Drawing.Size(316, 45);
+            this.progressBarClosed.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarClosed.TabIndex = 23;
             // 
             // progressBarResolved
@@ -221,16 +227,61 @@
             this.progressBarResolved.Location = new System.Drawing.Point(16, 368);
             this.progressBarResolved.Name = "progressBarResolved";
             this.progressBarResolved.Size = new System.Drawing.Size(316, 45);
-            this.progressBarResolved.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBarResolved.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarResolved.TabIndex = 24;
             // 
             // progressBarOpen
             // 
+            this.progressBarOpen.BackColor = System.Drawing.Color.Black;
             this.progressBarOpen.Location = new System.Drawing.Point(16, 287);
             this.progressBarOpen.Name = "progressBarOpen";
             this.progressBarOpen.Size = new System.Drawing.Size(316, 45);
             this.progressBarOpen.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarOpen.TabIndex = 25;
+            // 
+            // labelOpenProgress
+            // 
+            this.labelOpenProgress.AutoSize = true;
+            this.labelOpenProgress.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOpenProgress.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.labelOpenProgress.Location = new System.Drawing.Point(338, 294);
+            this.labelOpenProgress.Name = "labelOpenProgress";
+            this.labelOpenProgress.Size = new System.Drawing.Size(61, 38);
+            this.labelOpenProgress.TabIndex = 34;
+            this.labelOpenProgress.Text = "0/0";
+            // 
+            // labelResolvedProgress
+            // 
+            this.labelResolvedProgress.AutoSize = true;
+            this.labelResolvedProgress.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResolvedProgress.ForeColor = System.Drawing.Color.Green;
+            this.labelResolvedProgress.Location = new System.Drawing.Point(338, 375);
+            this.labelResolvedProgress.Name = "labelResolvedProgress";
+            this.labelResolvedProgress.Size = new System.Drawing.Size(61, 38);
+            this.labelResolvedProgress.TabIndex = 35;
+            this.labelResolvedProgress.Text = "0/0";
+            // 
+            // labelClosedProgress
+            // 
+            this.labelClosedProgress.AutoSize = true;
+            this.labelClosedProgress.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClosedProgress.ForeColor = System.Drawing.Color.Orange;
+            this.labelClosedProgress.Location = new System.Drawing.Point(338, 457);
+            this.labelClosedProgress.Name = "labelClosedProgress";
+            this.labelClosedProgress.Size = new System.Drawing.Size(61, 38);
+            this.labelClosedProgress.TabIndex = 36;
+            this.labelClosedProgress.Text = "0/0";
+            // 
+            // labelPastDeadlineProgress
+            // 
+            this.labelPastDeadlineProgress.AutoSize = true;
+            this.labelPastDeadlineProgress.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPastDeadlineProgress.ForeColor = System.Drawing.Color.Crimson;
+            this.labelPastDeadlineProgress.Location = new System.Drawing.Point(338, 540);
+            this.labelPastDeadlineProgress.Name = "labelPastDeadlineProgress";
+            this.labelPastDeadlineProgress.Size = new System.Drawing.Size(61, 38);
+            this.labelPastDeadlineProgress.TabIndex = 37;
+            this.labelPastDeadlineProgress.Text = "0/0";
             // 
             // DashboardForm
             // 
@@ -238,6 +289,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(966, 782);
+            this.Controls.Add(this.labelPastDeadlineProgress);
+            this.Controls.Add(this.labelClosedProgress);
+            this.Controls.Add(this.labelResolvedProgress);
+            this.Controls.Add(this.labelOpenProgress);
             this.Controls.Add(this.buttonShowList);
             this.Controls.Add(this.labelPastDeadlineInc);
             this.Controls.Add(this.labelClosedInc);
@@ -285,5 +340,9 @@
         private System.Windows.Forms.ProgressBar progressBarClosed;
         private System.Windows.Forms.ProgressBar progressBarResolved;
         private System.Windows.Forms.ProgressBar progressBarOpen;
+        private System.Windows.Forms.Label labelOpenProgress;
+        private System.Windows.Forms.Label labelResolvedProgress;
+        private System.Windows.Forms.Label labelClosedProgress;
+        private System.Windows.Forms.Label labelPastDeadlineProgress;
     }
 }

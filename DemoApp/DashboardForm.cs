@@ -15,11 +15,26 @@ namespace DemoApp
     public partial class DashboardForm : Form
     {
         Employee employee;
+        int totalTickets = 0;
+        int totalTicketsOpen = 0;
+        int totalTicketsResolved = 0;
+        int totalTicketsClosed = 0;
+        int totalTicketsPastDeadline = 0;
+        TicketLogic ticketLogic;
+        List<Ticket> tickets;
+
         public DashboardForm(Employee employee)
         {
-            InitializeComponent();
-            this.employee = employee;
-            LoadLabels();
+            try
+            {
+                InitializeComponent();
+                this.employee = employee;
+                LoadLabels();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
 
@@ -30,28 +45,61 @@ namespace DemoApp
             if (employee.IsSuperDesk)
             {
                 role = "Super Desk Employee";
+                ProgressBarsForSuperDeskEmployee();
             }
             else
             {
                 role = "Regular Employee";
+                ProgressBarsForRegularEmployee();
             }
 
             labelWelcome.Text = $"Welcome back,\n{employee.FirstName} {employee.LastName}";
             labelRole.Text = $"Your role is: {role}";
-            ProgressBarsForRegularEmployee();
+           
         }
 
         private void ProgressBarsForRegularEmployee()
         {
-            int totalTickets = 0;
-            int totalTicketsOpen = 0;
-            int totalTicketsResolved = 0;
-            int totalTicketsClosed = 0;
-            int totalTicketsPastDeadline = 0;
 
+            ticketLogic = new TicketLogic(employee);
+            tickets = ticketLogic.GetTickets();
+            CountingTickets();
+            SetBarsOfProgress();
+        }
 
-            TicketLogic ticketLogic = new TicketLogic(employee);
-            List<Ticket> tickets = ticketLogic.GetTickets();
+        private void ProgressBarsForSuperDeskEmployee()
+        {
+            ticketLogic = new TicketLogic();
+            tickets = ticketLogic.GetTickets();
+            CountingTickets();
+            SetBarsOfProgress();
+        }
+
+        private void SetBarsOfProgress()
+        {
+            progressBarOpen.Minimum = 0;
+            progressBarOpen.Maximum = totalTickets;
+            progressBarOpen.Value = totalTicketsOpen;
+            labelOpenProgress.Text = $"{totalTicketsOpen}/{totalTickets}";
+
+            progressBarResolved.Minimum = 0;
+            progressBarResolved.Maximum = totalTickets;
+            progressBarResolved.Value = totalTicketsResolved;
+            labelResolvedProgress.Text = $"{totalTicketsResolved}/{totalTickets}";
+
+            progressBarClosed.Minimum = 0;
+            progressBarClosed.Maximum = totalTickets;
+            progressBarClosed.Value = totalTicketsClosed;
+            labelClosedProgress.Text = $"{totalTicketsClosed}/{totalTickets}";
+
+            progressBarPastDeadline.Minimum = 0;
+            progressBarPastDeadline.Maximum = totalTickets;
+            progressBarPastDeadline.Value = totalTicketsPastDeadline;
+            labelPastDeadlineProgress.Text = $"{totalTicketsPastDeadline}/{totalTickets}";
+        }
+
+        private void CountingTickets()
+        {
             foreach (Ticket ticket in tickets)
             {
                 totalTickets++;
@@ -72,17 +120,6 @@ namespace DemoApp
                     totalTicketsPastDeadline++;
                 }
             }
-
-
-            progressBarOpen.Minimum = 0;
-            progressBarOpen.Maximum = totalTickets;
-            progressBarOpen.Value = totalTicketsOpen;
-
-        }
-
-        private void ProgressBarsForSuperDeskEmployee()
-        {
-
         }
 
 
