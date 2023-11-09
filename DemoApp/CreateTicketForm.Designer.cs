@@ -47,6 +47,8 @@
             this.priorityBox = new System.Windows.Forms.ComboBox();
             this.reportedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.deadlineBox = new System.Windows.Forms.ComboBox();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.submitTicketButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -183,7 +185,7 @@
             this.DescriptionBox.Location = new System.Drawing.Point(203, 508);
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.Size = new System.Drawing.Size(292, 144);
+            this.DescriptionBox.Size = new System.Drawing.Size(292, 110);
             this.DescriptionBox.TabIndex = 27;
             // 
             // priorityBox
@@ -214,11 +216,37 @@
             this.deadlineBox.Size = new System.Drawing.Size(292, 28);
             this.deadlineBox.TabIndex = 30;
             // 
+            // cancelButton
+            // 
+            this.cancelButton.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cancelButton.Location = new System.Drawing.Point(203, 643);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(110, 35);
+            this.cancelButton.TabIndex = 31;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = false;
+            // 
+            // submitTicketButton
+            // 
+            this.submitTicketButton.BackColor = System.Drawing.Color.Aqua;
+            this.submitTicketButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.submitTicketButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.submitTicketButton.Location = new System.Drawing.Point(385, 643);
+            this.submitTicketButton.Name = "submitTicketButton";
+            this.submitTicketButton.Size = new System.Drawing.Size(110, 35);
+            this.submitTicketButton.TabIndex = 32;
+            this.submitTicketButton.Text = "Submit";
+            this.submitTicketButton.UseVisualStyleBackColor = false;
+            // 
             // CreateTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 710);
+            this.Controls.Add(this.submitTicketButton);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.deadlineBox);
             this.Controls.Add(this.reportedDateTimePicker);
             this.Controls.Add(this.priorityBox);
@@ -265,5 +293,7 @@
         private System.Windows.Forms.ComboBox priorityBox;
         private System.Windows.Forms.DateTimePicker reportedDateTimePicker;
         private System.Windows.Forms.ComboBox deadlineBox;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button submitTicketButton;
     }
 }
