@@ -77,7 +77,7 @@ namespace DemoApp
                 item.SubItems.Add(ticket.DateAndTime.ToString("dd/MM/yy HH:mm"));
                 item.SubItems.Add(ticket.Deadline.ToString("dd/MM/yy HH:mm"));
                 item.SubItems.Add(ticket.Status.ToString());
-
+                
                 item.Tag = item;
                 listViewTickets.Items.Add(item);
                 id++;
