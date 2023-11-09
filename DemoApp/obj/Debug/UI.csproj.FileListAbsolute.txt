@@ -216,5 +216,8 @@ C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\bin\Debug\Syste
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Memory.xml
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Numerics.Vectors.xml
+<<<<<<< HEAD
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.xml
+=======
+>>>>>>> da6ac262ced9b61b7ad658d45aa0b7aba351819b
