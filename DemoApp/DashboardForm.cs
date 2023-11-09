@@ -45,12 +45,12 @@ namespace DemoApp
             if (employee.IsSuperDesk)
             {
                 role = "Super Desk Employee";
-                ProgressBarsForSuperDeskEmployee();
+                ProgressForSuperDeskEmployee();
             }
             else
             {
                 role = "Regular Employee";
-                ProgressBarsForRegularEmployee();
+                ProgressForRegularEmployee();
             }
 
             labelWelcome.Text = $"Welcome back,\n{employee.FirstName} {employee.LastName}";
@@ -58,44 +58,30 @@ namespace DemoApp
            
         }
 
-        private void ProgressBarsForRegularEmployee()
+        private void ProgressForRegularEmployee()
         {
 
             ticketLogic = new TicketLogic(employee);
             tickets = ticketLogic.GetTickets();
             CountingTickets();
-            SetBarsOfProgress();
+            SetPieChart();
         }
 
-        private void ProgressBarsForSuperDeskEmployee()
+        private void ProgressForSuperDeskEmployee()
         {
             ticketLogic = new TicketLogic();
             tickets = ticketLogic.GetTickets();
             CountingTickets();
-            SetBarsOfProgress();
+            SetPieChart();
         }
 
-        private void SetBarsOfProgress()
+        private void SetPieChart()
         {
-            progressBarOpen.Minimum = 0;
-            progressBarOpen.Maximum = totalTickets;
-            progressBarOpen.Value = totalTicketsOpen;
-            labelOpenProgress.Text = $"{totalTicketsOpen}/{totalTickets}";
-
-            progressBarResolved.Minimum = 0;
-            progressBarResolved.Maximum = totalTickets;
-            progressBarResolved.Value = totalTicketsResolved;
-            labelResolvedProgress.Text = $"{totalTicketsResolved}/{totalTickets}";
-
-            progressBarClosed.Minimum = 0;
-            progressBarClosed.Maximum = totalTickets;
-            progressBarClosed.Value = totalTicketsClosed;
-            labelClosedProgress.Text = $"{totalTicketsClosed}/{totalTickets}";
-
-            progressBarPastDeadline.Minimum = 0;
-            progressBarPastDeadline.Maximum = totalTickets;
-            progressBarPastDeadline.Value = totalTicketsPastDeadline;
-            labelPastDeadlineProgress.Text = $"{totalTicketsPastDeadline}/{totalTickets}";
+            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Open", totalTicketsOpen);
+            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Resolved", totalTicketsResolved);
+            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Closed", totalTicketsClosed);
+            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Past Deadline", totalTicketsPastDeadline);
+            labelTotalIncidents.Text = $"Total Incidents: {totalTickets}";
         }
 
         private void CountingTickets()

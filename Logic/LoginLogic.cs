@@ -12,31 +12,26 @@ namespace Logic
     public class LoginLogic
     {
         EmployeeDao employeeDao;
-        List<Employee> employees;
         Employee employee;
 
         public LoginLogic()
         {
             employeeDao = new EmployeeDao();
-            employees = employeeDao.GetEmployees();
         }
 
         public bool CheckForAccountInDatabase(string username, string passwordInput)
         {
             bool isAccountInDatabase = false;
 
-            foreach (Employee employee in employees)
-            {
-                if (employee.Username == username)
+           Employee employee = employeeDao.GetEmployeeByUsername(username);
+           if (employee != null)
+           {
+                if (BCrypt.Net.BCrypt.Verify(passwordInput, employee.Password))
                 {
-                    if (BCrypt.Net.BCrypt.Verify(passwordInput, employee.Password))
-                    {
-                        this.employee = employee;
-                        isAccountInDatabase = true;
-                        break;
-                    }
+                    this.employee = employee;
+                    isAccountInDatabase = true;
                 }
-            }
+           }
             return isAccountInDatabase;
         }
         public Employee GetEmployee()

@@ -23,9 +23,8 @@ namespace DAL
             collection = db.GetCollection<Employee>("Employees");
         }
 
-        public List<Employee> GetEmployees()
+        public List<Employee> GetEmployees()   // all employees
         {
-            // Create a filter to match all documents (if you want to retrieve all employees)
             var filter = new BsonDocument();
 
             List<Employee> employees = collection.Find(filter).ToList();
@@ -36,6 +35,12 @@ namespace DAL
         public Employee GetEmployeeById(ObjectId employeeId)
         {
             var filter = Builders<Employee>.Filter.Eq(x => x.Id, employeeId);
+            return collection.Find(filter).FirstOrDefault();
+        }
+
+        public Employee GetEmployeeByUsername(string username)
+        {
+            var filter = Builders<Employee>.Filter.Eq(x => x.Username, username);
             return collection.Find(filter).FirstOrDefault();
         }
     }

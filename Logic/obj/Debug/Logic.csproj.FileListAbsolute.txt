@@ -92,10 +92,8 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.csproj.CopyCompl
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.pdb
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\Logic.dll.config
-C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net-Next.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Memory.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net-Next.xml
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Memory.xml
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\Logic\bin\Debug\snappy32.dll
@@ -174,3 +172,8 @@ C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\bin\Debug\MongoDB
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\bin\Debug\DnsClient.xml
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\bin\Debug\System.ValueTuple.xml
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.csproj.CopyComplete
+<<<<<<< HEAD
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net.dll
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net.xml
+=======
+>>>>>>> da6ac262ced9b61b7ad658d45aa0b7aba351819b

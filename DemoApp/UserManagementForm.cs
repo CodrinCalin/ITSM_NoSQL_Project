@@ -19,7 +19,15 @@ namespace DemoApp
             InitializeComponent();
             this.employee = employee;
         }
-
+        
+        //      --------------------------------------------------
+        //
+        //  VEZI CA FIECARE EMPLOYEE SA AIBA USERNAME UNICAT
+        //  SA FACI ENCRIPTIE CU BCRYPT LA PAROLA INAINTE SA ADAUGI IN BAZA DE DATE
+        //
+        //
+        //
+        //  ----------------------------------------------
         private void buttonIncidentManagement_Click(object sender, EventArgs e)
         {
 

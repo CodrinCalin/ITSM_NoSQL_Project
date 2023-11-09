@@ -18,10 +18,17 @@ namespace DemoApp
         List<Ticket> tickets;
         public FilteringIncidentsForm()
         {
-            InitializeComponent();
-            ticketLogic = new TicketLogic();
-            tickets = ticketLogic.GetTickets();
-            FillTable();
+            try
+            { 
+                InitializeComponent();
+                ticketLogic = new TicketLogic();
+                tickets = ticketLogic.GetTickets();
+                FillTable();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonGoBack_Click(object sender, EventArgs e)
