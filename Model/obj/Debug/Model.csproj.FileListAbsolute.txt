@@ -106,3 +106,30 @@ C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\Model\obj\Debug\Model.csproj.Core
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\Model\obj\Debug\Model.dll
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\Model\obj\Debug\Model.pdb
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\snappy32.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\snappy64.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\libzstd.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\mongocrypt.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\Model.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\Model.pdb
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\DnsClient.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Bson.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Driver.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Libmongocrypt.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\SharpCompress.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\System.Buffers.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\System.ValueTuple.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\DnsClient.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Bson.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Driver.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\MongoDB.Driver.Core.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\System.Buffers.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\bin\Debug\System.ValueTuple.xml
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\obj\Debug\Model.csproj.AssemblyReference.cache
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\obj\Debug\Model.csproj.CopyComplete
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\obj\Debug\Model.dll
+C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Model\obj\Debug\Model.pdb

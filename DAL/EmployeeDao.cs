@@ -32,5 +32,11 @@ namespace DAL
 
             return employees;
         }
+
+        public Employee GetEmployeeById(ObjectId employeeId)
+        {
+            var filter = Builders<Employee>.Filter.Eq(x => x.Id, employeeId);
+            return collection.Find(filter).FirstOrDefault();
+        }
     }
 }

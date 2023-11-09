@@ -16,5 +16,10 @@ namespace DemoApp
         {
             InitializeComponent();
         }
+
+        private void CreateTicketForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

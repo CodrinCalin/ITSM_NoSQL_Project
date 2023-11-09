@@ -134,6 +134,7 @@
             this.buttonCreateTicket.TabIndex = 15;
             this.buttonCreateTicket.Text = "CREATE INCIDENT";
             this.buttonCreateTicket.UseVisualStyleBackColor = false;
+            this.buttonCreateTicket.Click += new System.EventHandler(this.buttonCreateTicket_Click);
             // 
             // listViewTickets
             // 
