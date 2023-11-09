@@ -114,7 +114,7 @@ namespace DemoApp
         private void buttonCreateTicket_Click(object sender, EventArgs e)
         {
             CreateTicketForm createTicketForm = new CreateTicketForm();
-            createTicketForm.Show();
+            createTicketForm.ShowDialog();
         }
     }
 }
