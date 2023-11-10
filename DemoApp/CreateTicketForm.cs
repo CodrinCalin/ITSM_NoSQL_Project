@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,37 @@ namespace DemoApp
 {
     public partial class CreateTicketForm : Form
     {
-        public CreateTicketForm()
+        public CreateTicketForm(Employee employee)
         {
             InitializeComponent();
+            deadlineBox.SelectedIndex = 0;
+            priorityBox.SelectedIndex = 0;
         }
 
-        private void CreateTicketForm_Load(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
         }
+
+        private void submitTicketButton_Click(object sender, EventArgs e)
+        {
+            CreateTicket();
+            this.Hide();
+        }
+
+        private void CreateTicket()
+        {
+            string subject = subjectOfIncidentBox.Text.Trim();
+            string type = typeOfIncidentBox.Text.Trim();
+            string description = descriptionBox.Text.Trim();
+
+
+
+
+
+            TicketPriority priority = (TicketPriority)Enum.Parse(typeof(TicketPriority), priorityBox.SelectedItem.ToString());
+            DateTime deadline = DateTime.Parse(deadlineBox.SelectedItem.ToString()); 
+        }
+
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentManagementForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
             "asdf",
             "gfdsla",
@@ -42,8 +42,9 @@
             this.buttonIncidentManagement = new System.Windows.Forms.Button();
             this.buttonDashboard = new System.Windows.Forms.Button();
             this.labelOverviewTickets = new System.Windows.Forms.Label();
-            this.buttonCreateTicket = new System.Windows.Forms.Button();
+            this.btnCreateTicketForRegularEmp = new System.Windows.Forms.Button();
             this.listViewTickets = new System.Windows.Forms.ListView();
+            this.buttonsortOnPriority = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,24 +126,24 @@
             this.labelOverviewTickets.TabIndex = 13;
             this.labelOverviewTickets.Text = "Overview tickets";
             // 
-            // buttonCreateTicket
+            // btnCreateTicketForRegularEmp
             // 
-            this.buttonCreateTicket.BackColor = System.Drawing.Color.Aqua;
-            this.buttonCreateTicket.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCreateTicket.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCreateTicket.Location = new System.Drawing.Point(727, 205);
-            this.buttonCreateTicket.Name = "buttonCreateTicket";
-            this.buttonCreateTicket.Size = new System.Drawing.Size(194, 36);
-            this.buttonCreateTicket.TabIndex = 15;
-            this.buttonCreateTicket.Text = "CREATE INCIDENT";
-            this.buttonCreateTicket.UseVisualStyleBackColor = false;
-            this.buttonCreateTicket.Click += new System.EventHandler(this.buttonCreateTicket_Click);
+            this.btnCreateTicketForRegularEmp.BackColor = System.Drawing.Color.Aqua;
+            this.btnCreateTicketForRegularEmp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCreateTicketForRegularEmp.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateTicketForRegularEmp.Location = new System.Drawing.Point(760, 205);
+            this.btnCreateTicketForRegularEmp.Name = "btnCreateTicketForRegularEmp";
+            this.btnCreateTicketForRegularEmp.Size = new System.Drawing.Size(194, 36);
+            this.btnCreateTicketForRegularEmp.TabIndex = 15;
+            this.btnCreateTicketForRegularEmp.Text = "CREATE INCIDENT";
+            this.btnCreateTicketForRegularEmp.UseVisualStyleBackColor = false;
+            this.btnCreateTicketForRegularEmp.Click += new System.EventHandler(this.btnCreateTicketForRegularEmp_Click);
             // 
             // listViewTickets
             // 
             this.listViewTickets.HideSelection = false;
             this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listViewTickets.Location = new System.Drawing.Point(18, 261);
             this.listViewTickets.Name = "listViewTickets";
             this.listViewTickets.Size = new System.Drawing.Size(936, 392);
@@ -150,14 +151,28 @@
             this.listViewTickets.UseCompatibleStateImageBehavior = false;
             this.listViewTickets.View = System.Windows.Forms.View.Details;
             // 
+            // buttonsortOnPriority
+            // 
+            this.buttonsortOnPriority.BackColor = System.Drawing.Color.Aqua;
+            this.buttonsortOnPriority.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonsortOnPriority.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonsortOnPriority.Location = new System.Drawing.Point(544, 205);
+            this.buttonsortOnPriority.Name = "buttonsortOnPriority";
+            this.buttonsortOnPriority.Size = new System.Drawing.Size(194, 36);
+            this.buttonsortOnPriority.TabIndex = 17;
+            this.buttonsortOnPriority.Text = "SORT ON PRIORITY";
+            this.buttonsortOnPriority.UseVisualStyleBackColor = false;
+            this.buttonsortOnPriority.Click += new System.EventHandler(this.buttonsortOnPriority_Click);
+            // 
             // IncidentManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(966, 782);
+            this.Controls.Add(this.buttonsortOnPriority);
             this.Controls.Add(this.listViewTickets);
-            this.Controls.Add(this.buttonCreateTicket);
+            this.Controls.Add(this.btnCreateTicketForRegularEmp);
             this.Controls.Add(this.labelOverviewTickets);
             this.Controls.Add(this.pictureBoxGarden);
             this.Controls.Add(this.labelLicense);
@@ -183,7 +198,8 @@
         private System.Windows.Forms.Button buttonIncidentManagement;
         private System.Windows.Forms.Button buttonDashboard;
         private System.Windows.Forms.Label labelOverviewTickets;
-        private System.Windows.Forms.Button buttonCreateTicket;
+        private System.Windows.Forms.Button btnCreateTicketForRegularEmp;
         private System.Windows.Forms.ListView listViewTickets;
+        private System.Windows.Forms.Button buttonsortOnPriority;
     }
 }

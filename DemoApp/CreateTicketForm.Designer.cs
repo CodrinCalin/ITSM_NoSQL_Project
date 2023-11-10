@@ -36,20 +36,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.subjectOfIncidentBox = new System.Windows.Forms.TextBox();
             this.typeOfIncidentBox = new System.Windows.Forms.TextBox();
-            this.userBox = new System.Windows.Forms.TextBox();
-            this.DescriptionBox = new System.Windows.Forms.TextBox();
+            this.descriptionBox = new System.Windows.Forms.TextBox();
             this.priorityBox = new System.Windows.Forms.ComboBox();
             this.reportedDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.deadlineBox = new System.Windows.Forms.ComboBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.submitTicketButton = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // labelNoDesk
@@ -123,19 +126,10 @@
             this.label4.TabIndex = 18;
             this.label4.Text = "Type of incident:";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 356);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(135, 20);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Reported by user:";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 402);
+            this.label6.Location = new System.Drawing.Point(25, 362);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 20);
             this.label6.TabIndex = 20;
@@ -144,7 +138,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 456);
+            this.label7.Location = new System.Drawing.Point(25, 427);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(143, 20);
             this.label7.TabIndex = 21;
@@ -153,7 +147,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 534);
+            this.label8.Location = new System.Drawing.Point(25, 486);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 20);
             this.label8.TabIndex = 22;
@@ -173,20 +167,13 @@
             this.typeOfIncidentBox.Size = new System.Drawing.Size(292, 26);
             this.typeOfIncidentBox.TabIndex = 24;
             // 
-            // userBox
+            // descriptionBox
             // 
-            this.userBox.Location = new System.Drawing.Point(203, 356);
-            this.userBox.Name = "userBox";
-            this.userBox.Size = new System.Drawing.Size(292, 26);
-            this.userBox.TabIndex = 25;
-            // 
-            // DescriptionBox
-            // 
-            this.DescriptionBox.Location = new System.Drawing.Point(203, 508);
-            this.DescriptionBox.Multiline = true;
-            this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.Size = new System.Drawing.Size(292, 110);
-            this.DescriptionBox.TabIndex = 27;
+            this.descriptionBox.Location = new System.Drawing.Point(203, 486);
+            this.descriptionBox.Multiline = true;
+            this.descriptionBox.Name = "descriptionBox";
+            this.descriptionBox.Size = new System.Drawing.Size(292, 110);
+            this.descriptionBox.TabIndex = 27;
             // 
             // priorityBox
             // 
@@ -196,7 +183,7 @@
             "Low",
             "High",
             "Urgent"});
-            this.priorityBox.Location = new System.Drawing.Point(203, 402);
+            this.priorityBox.Location = new System.Drawing.Point(203, 362);
             this.priorityBox.Name = "priorityBox";
             this.priorityBox.Size = new System.Drawing.Size(292, 28);
             this.priorityBox.TabIndex = 28;
@@ -211,7 +198,9 @@
             // deadlineBox
             // 
             this.deadlineBox.FormattingEnabled = true;
-            this.deadlineBox.Location = new System.Drawing.Point(203, 456);
+            this.deadlineBox.Items.AddRange(new object[] {
+            "7 days, 14 days, 28 days, 6 month"});
+            this.deadlineBox.Location = new System.Drawing.Point(203, 427);
             this.deadlineBox.Name = "deadlineBox";
             this.deadlineBox.Size = new System.Drawing.Size(292, 28);
             this.deadlineBox.TabIndex = 30;
@@ -227,6 +216,7 @@
             this.cancelButton.TabIndex = 31;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // submitTicketButton
             // 
@@ -239,25 +229,50 @@
             this.submitTicketButton.TabIndex = 32;
             this.submitTicketButton.Text = "Submit";
             this.submitTicketButton.UseVisualStyleBackColor = false;
+            this.submitTicketButton.Click += new System.EventHandler(this.submitTicketButton_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(522, 216);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(65, 26);
+            this.numericUpDown1.TabIndex = 33;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(604, 216);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(65, 26);
+            this.numericUpDown2.TabIndex = 34;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(518, 193);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 20);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "time";
             // 
             // CreateTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 710);
+            this.ClientSize = new System.Drawing.Size(709, 710);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.submitTicketButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.deadlineBox);
             this.Controls.Add(this.reportedDateTimePicker);
             this.Controls.Add(this.priorityBox);
-            this.Controls.Add(this.DescriptionBox);
-            this.Controls.Add(this.userBox);
+            this.Controls.Add(this.descriptionBox);
             this.Controls.Add(this.typeOfIncidentBox);
             this.Controls.Add(this.subjectOfIncidentBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -268,6 +283,8 @@
             this.Name = "CreateTicketForm";
             this.Text = "CreateTicketForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,18 +299,19 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox subjectOfIncidentBox;
         private System.Windows.Forms.TextBox typeOfIncidentBox;
-        private System.Windows.Forms.TextBox userBox;
-        private System.Windows.Forms.TextBox DescriptionBox;
+        private System.Windows.Forms.TextBox descriptionBox;
         private System.Windows.Forms.ComboBox priorityBox;
         private System.Windows.Forms.DateTimePicker reportedDateTimePicker;
         private System.Windows.Forms.ComboBox deadlineBox;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button submitTicketButton;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label9;
     }
 }

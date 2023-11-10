@@ -26,9 +26,15 @@ namespace DemoApp
             employeeLogic = new EmployeeLogic();
 
             if (employee.IsSuperDesk)
+            {
                 ticketLogic = new TicketLogic();
+                btnCreateTicketForRegularEmp.Hide();
+            }
             else
+            {
                 ticketLogic = new TicketLogic(employee);
+                btnCreateTicketForRegularEmp.Hide();
+            }
 
             UpdateUI();
         }
@@ -38,22 +44,12 @@ namespace DemoApp
             if (employee.IsSuperDesk)
             {
                 DisplayTicketsForSuperDesk();
-                buttonCreateTicket.Hide();
-
             }
             else
             {
                 DisplayTicketsForRegularEmployee();
-                buttonCreateTicket.Show();
             }
         }
-
-        private void buttonCreateTicket_Click(object sender, EventArgs e)
-        {
-            CreateTicketForm createTicketForm = new CreateTicketForm();
-            createTicketForm.Show();
-        }
-
 
         #region regular employee
         private void DisplayTicketsForRegularEmployee()
@@ -92,6 +88,12 @@ namespace DemoApp
             listViewTickets.Columns.Add("Deadline", 120);
             listViewTickets.Columns.Add("Status", 80);
         }
+
+        private void btnCreateTicketForRegularEmp_Click(object sender, EventArgs e)
+        {
+            CreateTicketForm creaetTicketForm = new CreateTicketForm(this.employee);
+            creaetTicketForm.ShowDialog();
+        }
         #endregion
 
         private void buttonDashboard_Click(object sender, EventArgs e)
@@ -108,6 +110,8 @@ namespace DemoApp
             this.Hide();
         }
 
+        // super desk overview tickets 
+        // add crud operations
         #region super desk
         private void DisplayTicketsForSuperDesk()
         {
@@ -147,5 +151,11 @@ namespace DemoApp
         }
 
         #endregion
+
+        private void buttonsortOnPriority_Click(object sender, EventArgs e)
+        {
+            PrioritySortingForm prioritySortingForm = new PrioritySortingForm();
+            prioritySortingForm.ShowDialog();   
+        }
     }
 }
