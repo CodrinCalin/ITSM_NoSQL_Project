@@ -163,7 +163,7 @@ namespace DemoApp
         public void RefreshListView()
         {
             listViewTickets.Items.Clear();
-
+            TicketLogic ticketLogic = new TicketLogic();
             List<Ticket> tickets = ticketLogic.GetTickets();
 
             int id = 1;
