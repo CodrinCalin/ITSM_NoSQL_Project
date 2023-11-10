@@ -129,6 +129,12 @@
     <Compile Include="CreateTicketForm.Designer.cs">
       <DependentUpon>CreateTicketForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTicketForm.Designer.cs">
+      <DependentUpon>EditTicketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DashboardForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </Compile>
     <EmbeddedResource Include="CreateTicketForm.resx">
       <DependentUpon>CreateTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTicketForm.resx">
+      <DependentUpon>EditTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>

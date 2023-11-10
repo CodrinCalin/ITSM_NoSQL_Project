@@ -1,5 +1,6 @@
 ﻿using DAL;
 using Model;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,26 @@ namespace Logic
         public List<Ticket> GetTickets()
         {
             return tickets;
+        }
+
+        public void DeleteTicket(ObjectId ticketID)
+        {
+            ticketDao.DeleteTicket(ticketID);
+        }
+
+        public void CloseTicket(ObjectId ticketID)
+        {
+            ticketDao.CloseTicket(ticketID);
+        }
+
+        public void UpdateTicket(ObjectId ticketID, Ticket updatedTicket)
+        {
+            ticketDao.UpdateTicket(ticketID, updatedTicket);
+        }
+
+        public void CreateTicket(Ticket ticket)
+        {
+            ticketDao.CreateTicket(ticket);
         }
       
         public void CreateTicket(Ticket ticket)

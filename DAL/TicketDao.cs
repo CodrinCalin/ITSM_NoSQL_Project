@@ -56,10 +56,16 @@ namespace DAL
 
             var update = Builders<Ticket>.Update
                 .Set(t => t.SubjectOfIncident, updatedTicket.SubjectOfIncident)
-                .Set(t => t.Description, updatedTicket.Description);
+                .Set(t => t.Description, updatedTicket.Description)
+                .Set(t => t.TypeOfIncident, updatedTicket.TypeOfIncident)
+                .Set(t => t.UserID, updatedTicket.UserID)
+                .Set(t => t.Priority, updatedTicket.Priority)
+                .Set(t => t.Status, updatedTicket.Status)
+                .Set(t => t.Deadline, updatedTicket.Deadline);
 
             collection.UpdateOne(filter, update);
         }
+
 
         public void DeleteTicket(ObjectId id) 
         {
