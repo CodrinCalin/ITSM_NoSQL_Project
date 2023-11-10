@@ -44,6 +44,12 @@
             this.labelOverviewTickets = new System.Windows.Forms.Label();
             this.buttonCreateTicket = new System.Windows.Forms.Button();
             this.listViewTickets = new System.Windows.Forms.ListView();
+            this.buttonFilter = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.buttonTransfer = new System.Windows.Forms.Button();
+            this.buttonSort = new System.Windows.Forms.Button();
+            this.buttonEscalate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,7 +134,7 @@
             this.buttonCreateTicket.BackColor = System.Drawing.Color.Aqua;
             this.buttonCreateTicket.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonCreateTicket.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCreateTicket.Location = new System.Drawing.Point(727, 205);
+            this.buttonCreateTicket.Location = new System.Drawing.Point(760, 209);
             this.buttonCreateTicket.Name = "buttonCreateTicket";
             this.buttonCreateTicket.Size = new System.Drawing.Size(194, 36);
             this.buttonCreateTicket.TabIndex = 15;
@@ -138,15 +144,73 @@
             // 
             // listViewTickets
             // 
+            this.listViewTickets.FullRowSelect = true;
             this.listViewTickets.HideSelection = false;
             this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
-            this.listViewTickets.Location = new System.Drawing.Point(18, 261);
+            this.listViewTickets.Location = new System.Drawing.Point(18, 271);
             this.listViewTickets.Name = "listViewTickets";
             this.listViewTickets.Size = new System.Drawing.Size(936, 392);
             this.listViewTickets.TabIndex = 16;
             this.listViewTickets.UseCompatibleStateImageBehavior = false;
             this.listViewTickets.View = System.Windows.Forms.View.Details;
+            // 
+            // buttonFilter
+            // 
+            this.buttonFilter.Location = new System.Drawing.Point(272, 194);
+            this.buttonFilter.Name = "buttonFilter";
+            this.buttonFilter.Size = new System.Drawing.Size(150, 29);
+            this.buttonFilter.TabIndex = 17;
+            this.buttonFilter.Text = "Filter";
+            this.buttonFilter.UseVisualStyleBackColor = true;
+            this.buttonFilter.Click += new System.EventHandler(this.buttonFilter_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Location = new System.Drawing.Point(428, 195);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(150, 29);
+            this.buttonEdit.TabIndex = 17;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(584, 195);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(150, 29);
+            this.buttonClose.TabIndex = 17;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonCloseTicket_Click);
+            // 
+            // buttonTransfer
+            // 
+            this.buttonTransfer.Location = new System.Drawing.Point(272, 230);
+            this.buttonTransfer.Name = "buttonTransfer";
+            this.buttonTransfer.Size = new System.Drawing.Size(150, 29);
+            this.buttonTransfer.TabIndex = 17;
+            this.buttonTransfer.Text = "Transfer";
+            this.buttonTransfer.UseVisualStyleBackColor = true;
+            // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(428, 230);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(150, 29);
+            this.buttonSort.TabIndex = 17;
+            this.buttonSort.Text = "Sort";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            // 
+            // buttonEscalate
+            // 
+            this.buttonEscalate.Location = new System.Drawing.Point(584, 230);
+            this.buttonEscalate.Name = "buttonEscalate";
+            this.buttonEscalate.Size = new System.Drawing.Size(150, 29);
+            this.buttonEscalate.TabIndex = 17;
+            this.buttonEscalate.Text = "Escalate";
+            this.buttonEscalate.UseVisualStyleBackColor = true;
             // 
             // IncidentManagementForm
             // 
@@ -154,6 +218,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(966, 782);
+            this.Controls.Add(this.buttonEscalate);
+            this.Controls.Add(this.buttonClose);
+            this.Controls.Add(this.buttonSort);
+            this.Controls.Add(this.buttonEdit);
+            this.Controls.Add(this.buttonTransfer);
+            this.Controls.Add(this.buttonFilter);
             this.Controls.Add(this.listViewTickets);
             this.Controls.Add(this.buttonCreateTicket);
             this.Controls.Add(this.labelOverviewTickets);
@@ -183,5 +253,11 @@
         private System.Windows.Forms.Label labelOverviewTickets;
         private System.Windows.Forms.Button buttonCreateTicket;
         private System.Windows.Forms.ListView listViewTickets;
+        private System.Windows.Forms.Button buttonFilter;
+        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.Button buttonTransfer;
+        private System.Windows.Forms.Button buttonSort;
+        private System.Windows.Forms.Button buttonEscalate;
     }
 }

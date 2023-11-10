@@ -1,10 +1,12 @@
 ﻿using DAL;
 using Logic;
 using Model;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,8 @@ namespace DemoApp
     {
         private TicketLogic ticketLogic;
         private EmployeeLogic employeeLogic;
+        private Employee loggedInEmployee;
+        public event EventHandler DataUpdated;
         public IncidentManagementForm() //Employee loggedInEmployee
         {
             InitializeComponent();
@@ -34,6 +38,7 @@ namespace DemoApp
             ticketLogic = new TicketLogic();
             employeeLogic = new EmployeeLogic();
             DisplayAllTickets();
+
         }
 
         private void DisplayAllTickets()
@@ -56,7 +61,7 @@ namespace DemoApp
                 item.SubItems.Add(ticket.Deadline.ToString("dd/MM/yy HH:mm"));
                 item.SubItems.Add(ticket.Status.ToString());
 
-                item.Tag = item;
+                item.Tag = ticket;
                 listViewTickets.Items.Add(item);
                 id++;
             }
@@ -82,7 +87,7 @@ namespace DemoApp
                 item.SubItems.Add(ticket.Deadline.ToString("dd/MM/yy HH:mm"));
                 item.SubItems.Add(ticket.Status.ToString());
 
-                item.Tag = item;
+                item.Tag = ticket;
                 listViewTickets.Items.Add(item);
                 id++;
             }
@@ -111,10 +116,79 @@ namespace DemoApp
             listViewTickets.Columns.Add("Status", 80);
         }
 
+
+       // ------------- Related to the other forms -------------
+
+
+
         private void buttonCreateTicket_Click(object sender, EventArgs e)
         {
             CreateTicketForm createTicketForm = new CreateTicketForm();
             createTicketForm.ShowDialog();
         }
+
+        private void buttonFilter_Click(object sender, EventArgs e)
+        {
+            new FilteringIncidentsForm().ShowDialog();
+        }
+
+        private void buttonCloseTicket_Click(object sender, EventArgs e)
+        {
+            if (listViewTickets.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedTicketItem = listViewTickets.SelectedItems[0];
+                Ticket selectedTicket = (Ticket)selectedTicketItem.Tag;
+                ticketLogic.CloseTicket(selectedTicket.Id);
+                RefreshListView();
+            }
+            else
+            {
+                MessageBox.Show("Please select a ticket to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            // Check if any item is selected
+            if (listViewTickets.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedTicketItem = listViewTickets.SelectedItems[0];
+                Ticket selectedTicket = (Ticket)selectedTicketItem.Tag;
+                new EditTicketForm(selectedTicket,this).ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select a ticket to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        public void RefreshListView()
+        {
+            listViewTickets.Items.Clear();
+
+            List<Ticket> tickets = ticketLogic.GetTickets();
+
+            int id = 1;
+            foreach (Ticket ticket in tickets)
+            {
+                Employee employee = employeeLogic.GetEmployeeById(ticket.EmployeeID);
+
+                ListViewItem item = new ListViewItem(id.ToString());
+                item.SubItems.Add(employee.FirstName);
+                item.SubItems.Add(ticket.SubjectOfIncident);
+                item.SubItems.Add(ticket.Priority.ToString());
+                item.SubItems.Add(ticket.DateAndTime.ToString("dd/MM/yy HH:mm"));
+                item.SubItems.Add(ticket.Deadline.ToString("dd/MM/yy HH:mm"));
+                item.SubItems.Add(ticket.Status.ToString());
+
+                item.Tag = ticket;
+                listViewTickets.Items.Add(item);
+                id++;
+            }
+
+            listViewTickets.Refresh();
+        }
+
     }
 }
