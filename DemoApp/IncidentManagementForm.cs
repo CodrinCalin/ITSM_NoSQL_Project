@@ -21,50 +21,41 @@ namespace DemoApp
         public IncidentManagementForm(Employee employee) 
         {
             InitializeComponent();
-            this.employee = employee;
 
-            /*if (loggedInEmployee.IsSuperDesk)
-            {
+            this.employee = employee;
+            employeeLogic = new EmployeeLogic();
+
+            if (employee.IsSuperDesk)
                 ticketLogic = new TicketLogic();
-                DisplayAllTickets();
+            else
+                ticketLogic = new TicketLogic(employee);
+
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            if (employee.IsSuperDesk)
+            {
+                DisplayTicketsForSuperDesk();
+                buttonCreateTicket.Hide();
+
             }
             else
             {
-                ticketLogic = new TicketLogic(loggedInEmployee);
                 DisplayTicketsForRegularEmployee();
-            }*/
-            ticketLogic = new TicketLogic();
-            employeeLogic = new EmployeeLogic();
-            DisplayAllTickets();
-        }
-
-        private void DisplayAllTickets()
-        {
-            listViewTickets.Items.Clear();
-            CreateColumnsForSuperDesk();
-
-            List<Ticket> tickets = ticketLogic.GetTickets();
-
-            int id = 1;
-            foreach (Ticket ticket in tickets)
-            {
-                Employee employee = employeeLogic.GetEmployeeById(ticket.EmployeeID);
-
-                ListViewItem item = new ListViewItem(id.ToString());
-                item.SubItems.Add(employee.FirstName);
-                item.SubItems.Add(ticket.SubjectOfIncident);
-                item.SubItems.Add(ticket.Priority.ToString());
-                item.SubItems.Add(ticket.DateAndTime.ToString("dd/MM/yy HH:mm"));
-                item.SubItems.Add(ticket.Deadline.ToString("dd/MM/yy HH:mm"));
-                item.SubItems.Add(ticket.Status.ToString());
-
-                item.Tag = item;
-                listViewTickets.Items.Add(item);
-                id++;
+                buttonCreateTicket.Show();
             }
         }
 
+        private void buttonCreateTicket_Click(object sender, EventArgs e)
+        {
+            CreateTicketForm createTicketForm = new CreateTicketForm();
+            createTicketForm.Show();
+        }
 
+
+        #region regular employee
         private void DisplayTicketsForRegularEmployee()
         {
             listViewTickets.Items.Clear();
@@ -101,23 +92,7 @@ namespace DemoApp
             listViewTickets.Columns.Add("Deadline", 120);
             listViewTickets.Columns.Add("Status", 80);
         }
-
-        private void CreateColumnsForSuperDesk()
-        {
-            listViewTickets.Columns.Add("ID", 30);
-            listViewTickets.Columns.Add("Name", 100);
-            listViewTickets.Columns.Add("Subject", 120);
-            listViewTickets.Columns.Add("Priority", 80);
-            listViewTickets.Columns.Add("Date and Time", 120);
-            listViewTickets.Columns.Add("Deadline", 120);
-            listViewTickets.Columns.Add("Status", 80);
-        }
-
-        private void buttonCreateTicket_Click(object sender, EventArgs e)
-        {
-            CreateTicketForm createTicketForm = new CreateTicketForm();
-            createTicketForm.ShowDialog();
-        }
+        #endregion
 
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
@@ -132,5 +107,45 @@ namespace DemoApp
             userManagementForm.Show();
             this.Hide();
         }
+
+        #region super desk
+        private void DisplayTicketsForSuperDesk()
+        {
+            listViewTickets.Items.Clear();
+            CreateColumnsForSuperDesk();
+
+            List<Ticket> tickets = ticketLogic.GetTickets();
+
+            int id = 1;
+            foreach (Ticket ticket in tickets)
+            {
+                Employee employee = employeeLogic.GetEmployeeById(ticket.EmployeeID);
+
+                ListViewItem item = new ListViewItem(id.ToString());
+                item.SubItems.Add(employee.FirstName);
+                item.SubItems.Add(ticket.SubjectOfIncident);
+                item.SubItems.Add(ticket.Priority.ToString());
+                item.SubItems.Add(ticket.DateAndTime.ToString("dd/MM/yy HH:mm"));
+                item.SubItems.Add(ticket.Deadline.ToString("dd/MM/yy HH:mm"));
+                item.SubItems.Add(ticket.Status.ToString());
+
+                item.Tag = item;
+                listViewTickets.Items.Add(item);
+                id++;
+            }
+        }
+
+        private void CreateColumnsForSuperDesk()
+        {
+            listViewTickets.Columns.Add("ID", 30);
+            listViewTickets.Columns.Add("Name", 100);
+            listViewTickets.Columns.Add("Subject", 120);
+            listViewTickets.Columns.Add("Priority", 80);
+            listViewTickets.Columns.Add("Date and Time", 120);
+            listViewTickets.Columns.Add("Deadline", 120);
+            listViewTickets.Columns.Add("Status", 80);
+        }
+
+        #endregion
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentManagementForm));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
             "asdf",
             "gfdsla",
@@ -142,7 +142,7 @@
             // 
             this.listViewTickets.HideSelection = false;
             this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listViewTickets.Location = new System.Drawing.Point(18, 261);
             this.listViewTickets.Name = "listViewTickets";
             this.listViewTickets.Size = new System.Drawing.Size(936, 392);
