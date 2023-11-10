@@ -10,6 +10,7 @@ namespace Model
     {
         Open,
         Resolved,
-        Closed
+        Closed,
+        Escalated
     }
 }
