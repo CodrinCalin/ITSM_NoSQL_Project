@@ -21,14 +21,23 @@ namespace DemoApp
 
         private TicketLogic ticketLogic;
 
+        public event EventHandler TicketCreated;
+
         public CreateTicketForm(Employee employee)
         {
             InitializeComponent();
             this.employee = employee;
             ticketLogic = new TicketLogic();
 
+            loadUI();
+        }
+
+        private void loadUI()
+        {
+            // Set default values for deadline and priority
             deadlineBox.SelectedIndex = 0;
             priorityBox.SelectedIndex = 1;
+
             // Set limits for hours
             numericUpDownHours.Minimum = 0;
             numericUpDownHours.Maximum = 23;
@@ -43,9 +52,6 @@ namespace DemoApp
             // Set default values for hours and minutes
             numericUpDownHours.Value = currentTime.Hour;
             numericUpDownMinutes.Value = currentTime.Minute;
-
-            // error handling!
-            // update view
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -67,23 +73,17 @@ namespace DemoApp
             reportedDateTime = reportedDateTime.AddHours(hours);
             reportedDateTime = reportedDateTime.AddMinutes(minutes);
 
-
             string subject = subjectOfIncidentBox.Text.Trim();
             string type = typeOfIncidentBox.Text.Trim();
             string description = descriptionBox.Text.Trim();
             string userID = userIDBox.Text.Trim();  
 
             TicketPriority priority = (TicketPriority)Enum.Parse(typeof(TicketPriority), priorityBox.SelectedItem.ToString());
-
-
             string selectedDeadline = deadlineBox.SelectedItem.ToString();
             DateTime deadline = CalculateDeadline(reportedDateTime, selectedDeadline);
 
-
             if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(userID))
-            {
                 MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
                 CreateTicket(reportedDateTime, subject, type, priority, deadline, description, userID);
         }
@@ -108,11 +108,8 @@ namespace DemoApp
             this.Hide();
         }
 
-        public event EventHandler TicketCreated;
-
         protected virtual void OnTicketCreated(EventArgs e)
         {
-            // Raise the event
             TicketCreated?.Invoke(this, e);
         }
 

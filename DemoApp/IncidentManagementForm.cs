@@ -96,8 +96,6 @@ namespace DemoApp
             return item;
         }
 
-
-
         // ------------- Related to the other forms -------------
         private void createTicketForm_TicketCreated(object sender, EventArgs e)
         {
