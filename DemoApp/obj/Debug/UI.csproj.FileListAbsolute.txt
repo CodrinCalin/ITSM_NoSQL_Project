@@ -136,7 +136,6 @@ C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Buffers.
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.ValueTuple.dll
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\DAL.dll
-C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net-Next.dll
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Memory.dll
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\Logic.pdb
@@ -150,7 +149,6 @@ C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Buffers.
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.ValueTuple.xml
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\DAL.pdb
-C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net-Next.xml
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Memory.xml
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Yusuf\Source\Repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI.csproj.AssemblyReference.cache
@@ -220,3 +218,7 @@ C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.xml
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.EditTicketForm.resources
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.EditTicketForm.resources
+C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.dll
+C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.xml
+C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.EditTicketForm.resources
+C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.FilteringIncidentsForm.resources
