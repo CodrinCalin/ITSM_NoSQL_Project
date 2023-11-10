@@ -18,15 +18,21 @@ namespace Logic
             ticketDao = new TicketDao();
             tickets = ticketDao.GetTicketsBaseOnEmployeeId(employee);
         }
+
         public TicketLogic() 
         {
             ticketDao = new TicketDao();
             tickets = ticketDao.GetTickets();
         }
+
         public List<Ticket> GetTickets()
         {
             return tickets;
         }
       
+        public void CreateTicket(Ticket ticket)
+        {
+            ticketDao.CreateTicket(ticket);
+        }
     }
 }

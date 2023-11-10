@@ -96,6 +96,12 @@ namespace DemoApp
         }
         #endregion
 
+        private void buttonsortOnPriority_Click(object sender, EventArgs e)
+        {
+            PrioritySortingForm prioritySortingForm = new PrioritySortingForm(ticketLogic.GetTickets());
+            prioritySortingForm.ShowDialog();
+        }
+
         private void buttonDashboard_Click(object sender, EventArgs e)
         {
             DashboardForm dashboardForm = new DashboardForm(employee);
@@ -152,10 +158,5 @@ namespace DemoApp
 
         #endregion
 
-        private void buttonsortOnPriority_Click(object sender, EventArgs e)
-        {
-            PrioritySortingForm prioritySortingForm = new PrioritySortingForm();
-            prioritySortingForm.ShowDialog();   
-        }
     }
 }
