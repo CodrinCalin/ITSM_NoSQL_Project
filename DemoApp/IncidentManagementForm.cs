@@ -67,6 +67,25 @@ namespace DemoApp
             }
         }
 
+        private void UpdateUI()
+        {
+            if (loggedInEmployee.IsSuperDesk)
+            {
+                ticketLogic = new TicketLogic();
+                DisplayAllTickets();
+            }
+            else
+            {
+                ticketLogic = new TicketLogic(loggedInEmployee);
+                DisplayTicketsForRegularEmployee();
+            }
+        }
+
+        private void createTicketForm_TicketCreated(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
 
         private void DisplayTicketsForRegularEmployee()
         {
@@ -120,6 +139,7 @@ namespace DemoApp
         private void buttonCreateTicket_Click(object sender, EventArgs e)
         {
             CreateTicketForm createTicketForm = new CreateTicketForm(loggedInEmployee);
+            createTicketForm.TicketCreated += createTicketForm_TicketCreated;
             createTicketForm.ShowDialog();
         }
 
