@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Logic;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,18 @@ namespace DemoApp
     public partial class PrioritySortingForm : Form
     {
         private List<Ticket> tickets;
-        public PrioritySortingForm(List<Ticket> tickets)
+        public PrioritySortingForm(Employee employee)
         {
             InitializeComponent();
-            this.tickets = tickets;
+
+            TicketLogic ticketLogic;
+
+            if (employee.IsSuperDesk)
+                ticketLogic = new TicketLogic();
+            else
+                ticketLogic = new TicketLogic(employee);
+
+            tickets = ticketLogic.GetTickets();
         }
     }
 }
