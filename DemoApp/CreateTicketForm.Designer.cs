@@ -50,6 +50,8 @@
             this.numericUpDownHours = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownMinutes = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
+            this.userIDBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).BeginInit();
@@ -93,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(147, 154);
+            this.label1.Location = new System.Drawing.Point(147, 134);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(390, 32);
             this.label1.TabIndex = 14;
@@ -102,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 216);
+            this.label2.Location = new System.Drawing.Point(24, 182);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(112, 20);
             this.label2.TabIndex = 16;
@@ -111,7 +113,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 312);
+            this.label3.Location = new System.Drawing.Point(24, 269);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 20);
             this.label3.TabIndex = 17;
@@ -120,7 +122,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 361);
+            this.label4.Location = new System.Drawing.Point(25, 310);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 20);
             this.label4.TabIndex = 18;
@@ -129,7 +131,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(25, 409);
+            this.label6.Location = new System.Drawing.Point(25, 352);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 20);
             this.label6.TabIndex = 20;
@@ -138,7 +140,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 461);
+            this.label7.Location = new System.Drawing.Point(25, 453);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(143, 20);
             this.label7.TabIndex = 21;
@@ -147,7 +149,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 515);
+            this.label8.Location = new System.Drawing.Point(25, 512);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 20);
             this.label8.TabIndex = 22;
@@ -155,42 +157,42 @@
             // 
             // subjectOfIncidentBox
             // 
-            this.subjectOfIncidentBox.Location = new System.Drawing.Point(203, 312);
+            this.subjectOfIncidentBox.Location = new System.Drawing.Point(203, 269);
             this.subjectOfIncidentBox.Name = "subjectOfIncidentBox";
             this.subjectOfIncidentBox.Size = new System.Drawing.Size(292, 26);
             this.subjectOfIncidentBox.TabIndex = 23;
             // 
             // typeOfIncidentBox
             // 
-            this.typeOfIncidentBox.Location = new System.Drawing.Point(203, 361);
+            this.typeOfIncidentBox.Location = new System.Drawing.Point(203, 310);
             this.typeOfIncidentBox.Name = "typeOfIncidentBox";
             this.typeOfIncidentBox.Size = new System.Drawing.Size(292, 26);
             this.typeOfIncidentBox.TabIndex = 24;
             // 
             // descriptionBox
             // 
-            this.descriptionBox.Location = new System.Drawing.Point(203, 515);
+            this.descriptionBox.Location = new System.Drawing.Point(203, 512);
             this.descriptionBox.Multiline = true;
             this.descriptionBox.Name = "descriptionBox";
-            this.descriptionBox.Size = new System.Drawing.Size(292, 110);
+            this.descriptionBox.Size = new System.Drawing.Size(292, 130);
             this.descriptionBox.TabIndex = 27;
             // 
             // priorityBox
             // 
             this.priorityBox.FormattingEnabled = true;
             this.priorityBox.Items.AddRange(new object[] {
-            "Normal",
             "Low",
+            "Medium",
             "High",
             "Urgent"});
-            this.priorityBox.Location = new System.Drawing.Point(203, 409);
+            this.priorityBox.Location = new System.Drawing.Point(203, 352);
             this.priorityBox.Name = "priorityBox";
             this.priorityBox.Size = new System.Drawing.Size(292, 28);
             this.priorityBox.TabIndex = 28;
             // 
             // reportedDatePicker
             // 
-            this.reportedDatePicker.Location = new System.Drawing.Point(203, 216);
+            this.reportedDatePicker.Location = new System.Drawing.Point(203, 182);
             this.reportedDatePicker.Name = "reportedDatePicker";
             this.reportedDatePicker.Size = new System.Drawing.Size(292, 26);
             this.reportedDatePicker.TabIndex = 29;
@@ -199,8 +201,11 @@
             // 
             this.deadlineBox.FormattingEnabled = true;
             this.deadlineBox.Items.AddRange(new object[] {
-            "7 days, 14 days, 28 days, 6 month"});
-            this.deadlineBox.Location = new System.Drawing.Point(203, 461);
+            "7 days",
+            "14 days",
+            "28 days",
+            "6 months"});
+            this.deadlineBox.Location = new System.Drawing.Point(203, 453);
             this.deadlineBox.Name = "deadlineBox";
             this.deadlineBox.Size = new System.Drawing.Size(292, 28);
             this.deadlineBox.TabIndex = 30;
@@ -210,7 +215,7 @@
             this.cancelButton.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cancelButton.Location = new System.Drawing.Point(203, 643);
+            this.cancelButton.Location = new System.Drawing.Point(203, 663);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(110, 35);
             this.cancelButton.TabIndex = 31;
@@ -223,7 +228,7 @@
             this.submitTicketButton.BackColor = System.Drawing.Color.Aqua;
             this.submitTicketButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.submitTicketButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.submitTicketButton.Location = new System.Drawing.Point(385, 643);
+            this.submitTicketButton.Location = new System.Drawing.Point(385, 663);
             this.submitTicketButton.Name = "submitTicketButton";
             this.submitTicketButton.Size = new System.Drawing.Size(110, 35);
             this.submitTicketButton.TabIndex = 32;
@@ -233,14 +238,14 @@
             // 
             // numericUpDownHours
             // 
-            this.numericUpDownHours.Location = new System.Drawing.Point(203, 266);
+            this.numericUpDownHours.Location = new System.Drawing.Point(203, 222);
             this.numericUpDownHours.Name = "numericUpDownHours";
             this.numericUpDownHours.Size = new System.Drawing.Size(83, 26);
             this.numericUpDownHours.TabIndex = 33;
             // 
             // numericUpDownMinutes
             // 
-            this.numericUpDownMinutes.Location = new System.Drawing.Point(304, 266);
+            this.numericUpDownMinutes.Location = new System.Drawing.Point(308, 222);
             this.numericUpDownMinutes.Name = "numericUpDownMinutes";
             this.numericUpDownMinutes.Size = new System.Drawing.Size(74, 26);
             this.numericUpDownMinutes.TabIndex = 34;
@@ -248,17 +253,35 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 266);
+            this.label9.Location = new System.Drawing.Point(24, 222);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 20);
             this.label9.TabIndex = 35;
             this.label9.Text = "Time:";
+            // 
+            // userIDBox
+            // 
+            this.userIDBox.Location = new System.Drawing.Point(203, 400);
+            this.userIDBox.Name = "userIDBox";
+            this.userIDBox.Size = new System.Drawing.Size(292, 26);
+            this.userIDBox.TabIndex = 36;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(25, 400);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 20);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "User ID:";
             // 
             // CreateTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 710);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.userIDBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.numericUpDownMinutes);
             this.Controls.Add(this.numericUpDownHours);
@@ -313,5 +336,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownHours;
         private System.Windows.Forms.NumericUpDown numericUpDownMinutes;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox userIDBox;
+        private System.Windows.Forms.Label label5;
     }
 }
