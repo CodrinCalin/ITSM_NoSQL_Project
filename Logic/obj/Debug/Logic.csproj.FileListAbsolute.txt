@@ -172,7 +172,5 @@ C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\bin\Debug\MongoDB
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\bin\Debug\DnsClient.xml
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\bin\Debug\System.ValueTuple.xml
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\Logic\obj\Debug\Logic.csproj.CopyComplete
-
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net.dll
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\Logic\bin\Debug\BCrypt.Net.xml
-

@@ -20,11 +20,11 @@ namespace DemoApp
         private TicketLogic ticketLogic;
         private EmployeeLogic employeeLogic;
         private Employee loggedInEmployee;
-        public event EventHandler DataUpdated;
-        public IncidentManagementForm() //Employee loggedInEmployee
+        
+        public IncidentManagementForm(Employee employee) //Employee loggedInEmployee
         {
             InitializeComponent();
-
+            this.loggedInEmployee = employee;
             /*if (loggedInEmployee.IsSuperDesk)
             {
                 ticketLogic = new TicketLogic();
@@ -117,16 +117,13 @@ namespace DemoApp
         }
 
 
-       // ------------- Related to the other forms -------------
-
-
-
         private void buttonCreateTicket_Click(object sender, EventArgs e)
         {
-            CreateTicketForm createTicketForm = new CreateTicketForm();
+            CreateTicketForm createTicketForm = new CreateTicketForm(loggedInEmployee);
             createTicketForm.ShowDialog();
         }
 
+        // ------------- Related to the other forms -------------
         private void buttonFilter_Click(object sender, EventArgs e)
         {
             new FilteringIncidentsForm().ShowDialog();
