@@ -51,9 +51,6 @@ namespace Logic
             ticketDao.CreateTicket(ticket);
         }
       
-        public void CreateTicket(Ticket ticket)
-        {
-            ticketDao.CreateTicket(ticket);
-        }
+
     }
 }
