@@ -207,5 +207,19 @@ namespace DemoApp
             listViewTickets.Refresh();
         }
 
+        private void buttonEscalate_Click(object sender, EventArgs e)
+        {
+            if (listViewTickets.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedTicketItem = listViewTickets.SelectedItems[0];
+                Ticket selectedTicket = (Ticket)selectedTicketItem.Tag;
+                ticketLogic.EscaladeTicket(selectedTicket.Id);
+                RefreshListView();
+            }
+            else
+            {
+                MessageBox.Show("Please select a ticket to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

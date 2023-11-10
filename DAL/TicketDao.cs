@@ -41,15 +41,6 @@ namespace DAL
             collection.InsertOne(ticket);
         }
 
-        public Ticket ReadTicket(ObjectId id)
-        {
-            // Find the ticket by its unique identifier
-            var filter = Builders<Ticket>.Filter.Eq(t => t.Id, id);
-            var ticket = collection.Find(filter).FirstOrDefault();
-
-            return ticket;
-        }
-
         public void UpdateTicket(ObjectId id, Ticket updatedTicket)
         {
             var filter = Builders<Ticket>.Filter.Eq(t => t.Id, id);
@@ -77,6 +68,14 @@ namespace DAL
         {
             var filter = Builders<Ticket>.Filter.Eq(t => t.Id, id);
             var update = Builders<Ticket>.Update.Set(t => t.Status, TicketStatus.Closed);
+
+            collection.UpdateOne(filter, update);
+        }
+
+        public void EscaladeTicket(ObjectId id)
+        {
+            var filter = Builders<Ticket>.Filter.Eq(t => t.Id, id);
+            var update = Builders<Ticket>.Update.Set(t => t.Status, TicketStatus.Escalated);
 
             collection.UpdateOne(filter, update);
         }

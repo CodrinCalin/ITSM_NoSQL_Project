@@ -51,6 +51,9 @@ namespace Logic
             ticketDao.CreateTicket(ticket);
         }
       
-
+        public void EscaladeTicket(ObjectId ticketID)
+        {
+            ticketDao.EscaladeTicket(ticketID);
+        }
     }
 }
