@@ -17,9 +17,11 @@ namespace DemoApp
     {
         private TicketLogic ticketLogic;
         private EmployeeLogic employeeLogic;
-        public IncidentManagementForm() //Employee loggedInEmployee
+        private Employee employee;
+        public IncidentManagementForm(Employee employee) 
         {
             InitializeComponent();
+            this.employee = employee;
 
             /*if (loggedInEmployee.IsSuperDesk)
             {
@@ -115,6 +117,20 @@ namespace DemoApp
         {
             CreateTicketForm createTicketForm = new CreateTicketForm();
             createTicketForm.ShowDialog();
+        }
+
+        private void buttonDashboard_Click(object sender, EventArgs e)
+        {
+            DashboardForm dashboardForm = new DashboardForm(employee);
+            dashboardForm.Show();
+            this.Hide();
+        }
+
+        private void buttonUserManagement_Click(object sender, EventArgs e)
+        {
+            UserManagementForm userManagementForm = new UserManagementForm(employee);
+            userManagementForm.Show();
+            this.Hide();
         }
     }
 }

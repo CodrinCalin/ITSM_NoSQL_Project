@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentManagementForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "1",
             "asdf",
             "gfdsla",
@@ -90,6 +90,7 @@
             this.buttonUserManagement.TabIndex = 9;
             this.buttonUserManagement.Text = "User Management";
             this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
             // 
             // buttonIncidentManagement
             // 
@@ -112,6 +113,7 @@
             this.buttonDashboard.TabIndex = 7;
             this.buttonDashboard.Text = "Dashboard";
             this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Click += new System.EventHandler(this.buttonDashboard_Click);
             // 
             // labelOverviewTickets
             // 
@@ -140,7 +142,7 @@
             // 
             this.listViewTickets.HideSelection = false;
             this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem2});
             this.listViewTickets.Location = new System.Drawing.Point(18, 261);
             this.listViewTickets.Name = "listViewTickets";
             this.listViewTickets.Size = new System.Drawing.Size(936, 392);

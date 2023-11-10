@@ -116,7 +116,9 @@ namespace DemoApp
 
         private void buttonIncidentManagement_Click(object sender, EventArgs e)
         {
-
+            IncidentManagementForm incidentManagementForm = new IncidentManagementForm(employee);
+            incidentManagementForm.Show();
+            this.Hide();
         }
 
         private void buttonUserManagement_Click(object sender, EventArgs e)
