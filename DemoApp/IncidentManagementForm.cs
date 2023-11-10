@@ -158,5 +158,11 @@ namespace DemoApp
                 MessageBox.Show("Please select a ticket to edit.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            PrioritySortingForm prioritySortingForm = new PrioritySortingForm(employee);
+            prioritySortingForm.ShowDialog();
+        }
     }
 }
