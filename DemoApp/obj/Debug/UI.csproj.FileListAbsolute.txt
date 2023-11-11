@@ -223,9 +223,7 @@ C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.xml
 C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.EditTicketForm.resources
 C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.FilteringIncidentsForm.resources
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.PrioritySortingForm.resources
-<<<<<<< Updated upstream
 C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.PrioritySortingForm.resources
-=======
 C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\bin\Debug\snappy32.dll
 C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\bin\Debug\snappy64.dll
 C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\bin\Debug\libzstd.dll
@@ -279,4 +277,4 @@ C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\obj\Debug\UI
 C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.exe
 C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.pdb
 C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.TransferTicket.resources
->>>>>>> Stashed changes
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.TransferTicket.resources
