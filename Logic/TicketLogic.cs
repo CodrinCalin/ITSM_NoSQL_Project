@@ -3,6 +3,7 @@ using Model;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,16 @@ namespace Logic
         public void EscaladeTicket(ObjectId ticketID)
         {
             ticketDao.EscaladeTicket(ticketID);
+        }
+
+        public List<Ticket> GetTicketsByPriority(TicketPriority priority)
+        {
+            return ticketDao.GetTicketsByPriority(priority);   
+        }
+
+        public List<Ticket> GetTicketsBySortOrder(MySortOrder sortOrder)
+        {
+            return ticketDao.GetTicketsBySortOrder(sortOrder);
         }
     }
 }

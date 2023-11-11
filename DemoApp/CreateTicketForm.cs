@@ -64,7 +64,6 @@ namespace DemoApp
             ProcessTicket();
         }
 
-
         private void ProcessTicket()
         {
             DateTime reportedDateTime = reportedDatePicker.Value.Date;

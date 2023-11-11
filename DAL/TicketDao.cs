@@ -3,9 +3,11 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace DAL
 {
@@ -78,6 +80,25 @@ namespace DAL
             var update = Builders<Ticket>.Update.Set(t => t.Status, TicketStatus.Escalated);
 
             collection.UpdateOne(filter, update);
+        }
+
+        public List<Ticket> GetTicketsByPriority(TicketPriority priority)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("Priority", priority.ToString());
+            List<Ticket> tickets = collection.Find(filter).ToList();
+            return tickets;
+        }
+
+        public List<Ticket> GetTicketsBySortOrder(Model.SortOrder sortOrder)
+        {
+            var sortField = Builders<Ticket>.Sort.Ascending("Priority");
+
+            if (sortOrder == Model.SortOrder.Descending)
+            {
+                sortField = Builders<Ticket>.Sort.Descending("Priority");
+            }
+            List<Ticket> tickets = collection.Find(new BsonDocument()).Sort(sortField).ToList();
+            return tickets;
         }
     }
 }

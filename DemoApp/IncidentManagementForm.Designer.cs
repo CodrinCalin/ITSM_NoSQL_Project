@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentManagementForm));
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
-            "1",
-            "asdf",
-            "gfdsla",
-            "23-11-2023",
-            "dd"}, -1);
             this.pictureBoxGarden = new System.Windows.Forms.PictureBox();
             this.labelLicense = new System.Windows.Forms.Label();
             this.labelNoDesk = new System.Windows.Forms.Label();
@@ -132,7 +126,6 @@
             // buttonCreateTicket
             // 
             this.buttonCreateTicket.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.buttonCreateTicket.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonCreateTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCreateTicket.Location = new System.Drawing.Point(760, 209);
             this.buttonCreateTicket.Name = "buttonCreateTicket";
@@ -146,8 +139,6 @@
             // 
             this.listViewTickets.FullRowSelect = true;
             this.listViewTickets.HideSelection = false;
-            this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
             this.listViewTickets.Location = new System.Drawing.Point(18, 271);
             this.listViewTickets.Name = "listViewTickets";
             this.listViewTickets.Size = new System.Drawing.Size(936, 392);
