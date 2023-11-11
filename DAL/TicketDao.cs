@@ -89,11 +89,11 @@ namespace DAL
             return tickets;
         }
 
-        public List<Ticket> GetTicketsBySortOrder(Model.SortOrder sortOrder)
+        public List<Ticket> GetTicketsBySortOrder(MySortOrder sortOrder)
         {
             var sortField = Builders<Ticket>.Sort.Ascending("Priority");
 
-            if (sortOrder == Model.SortOrder.Descending)
+            if (sortOrder == MySortOrder.Descending)
             {
                 sortField = Builders<Ticket>.Sort.Descending("Priority");
             }
