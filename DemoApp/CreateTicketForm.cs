@@ -28,13 +28,20 @@ namespace DemoApp
 
         public CreateTicketForm(Employee employee)
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            this.employee = employee;
-            ticketLogic = new TicketLogic();
-            employeeLogic = new EmployeeLogic();
+                this.employee = employee;
+                ticketLogic = new TicketLogic();
+                employeeLogic = new EmployeeLogic();
 
-            loadUI();
+                loadUI();
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void loadUI()

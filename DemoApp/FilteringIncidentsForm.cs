@@ -16,12 +16,19 @@ namespace DemoApp
     {
         TicketLogic ticketLogic;
         List<Ticket> tickets;
-        public FilteringIncidentsForm()
+        public FilteringIncidentsForm(Employee employee)
         {
             try
             { 
                 InitializeComponent();
-                ticketLogic = new TicketLogic();
+                if (employee.IsSuperDesk)
+                {
+                    ticketLogic = new TicketLogic();
+                }
+                else
+                {
+                    ticketLogic = new TicketLogic(employee);
+                }
                 tickets = ticketLogic.GetTickets();
                 FillTable();
             }

@@ -19,7 +19,14 @@ namespace DemoApp
 
         public LoginForm()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

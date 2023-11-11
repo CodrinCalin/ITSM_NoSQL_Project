@@ -223,3 +223,4 @@ C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\bin\Debug\BCrypt.Net.xml
 C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.EditTicketForm.resources
 C:\Users\Yusuf\source\repos\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.FilteringIncidentsForm.resources
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.PrioritySortingForm.resources
+C:\Users\cezar\Desktop\ITSM_NoSQL_Project\DemoApp\obj\Debug\DemoApp.PrioritySortingForm.resources

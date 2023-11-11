@@ -252,6 +252,7 @@
             this.Controls.Add(this.buttonDashboard);
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).EndInit();
             this.ResumeLayout(false);

@@ -83,13 +83,14 @@
             // 
             // buttonUserManagement
             // 
+            this.buttonUserManagement.BackColor = System.Drawing.Color.White;
             this.buttonUserManagement.Location = new System.Drawing.Point(642, 129);
             this.buttonUserManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonUserManagement.Name = "buttonUserManagement";
             this.buttonUserManagement.Size = new System.Drawing.Size(324, 60);
             this.buttonUserManagement.TabIndex = 9;
             this.buttonUserManagement.Text = "User Management";
-            this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.UseVisualStyleBackColor = false;
             this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
             // 
             // buttonIncidentManagement
@@ -230,6 +231,7 @@
             this.Controls.Add(this.buttonDashboard);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "IncidentManagementForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IncidentManagementForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).EndInit();
             this.ResumeLayout(false);

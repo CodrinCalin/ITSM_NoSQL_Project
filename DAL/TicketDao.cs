@@ -19,9 +19,17 @@ namespace DAL
 
         public TicketDao()
         {
-            client = new MongoClient("mongodb+srv://706431:user123@cluster0.bvkka8o.mongodb.net/");
-            db = client.GetDatabase("NoSQL_ProjectDatabase");
-            collection = db.GetCollection<Ticket>("Tickets");
+            try
+            {
+                client = new MongoClient("mongodb+srv://706431:user123@cluster0.bvkka8o.mongodb.net/");
+                db = client.GetDatabase("NoSQL_ProjectDatabase");
+                collection = db.GetCollection<Ticket>("Tickets");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Problem while connecting to the database.");
+                throw ex;
+            }
         }
 
         public List<Ticket> GetTickets()
