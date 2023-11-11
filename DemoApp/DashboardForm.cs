@@ -22,7 +22,7 @@ namespace DemoApp
         int totalTicketsResolved = 0;
         int totalTicketsClosed = 0;
         int totalTicketsPastDeadline = 0;
-        int toalTicketsEscalated = 0;
+        int totalTicketsEscalated = 0;
         TicketLogic ticketLogic;
         List<Ticket> tickets;
 
@@ -91,8 +91,17 @@ namespace DemoApp
             chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Resolved", totalTicketsResolved);
             chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Closed", totalTicketsClosed);
             chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Past Deadline", totalTicketsPastDeadline);
-            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Escalated", toalTicketsEscalated);
+            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Escalated", totalTicketsEscalated);
             labelTotalIncidents.Text = $"Total Incidents: {totalTickets}";
+
+            // make the chart to not have the label shown inside and also display the legend with the number of incidents for each
+            foreach (var point in chartPieIncidents.Series["IncidentsSeries"].Points)
+            {
+                point.IsValueShownAsLabel = false;
+                point["PieLabelStyle"] = "Disabled";
+                point.LegendText = $"{point.AxisLabel}: {point.YValues[0]}";
+            }
+            chartPieIncidents.Series["IncidentsSeries"].IsVisibleInLegend = true;
         }
 
         private void CountingTickets()
@@ -118,7 +127,7 @@ namespace DemoApp
                 }
                 else if (ticket.Status == TicketStatus.Escalated)
                 {
-                    toalTicketsEscalated++;
+                    totalTicketsEscalated++;
                 }
                 
             }
