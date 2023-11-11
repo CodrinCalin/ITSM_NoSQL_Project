@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentManagementForm));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "1",
-            "asdf",
-            "gfdsla",
-            "23-11-2023",
-            "dd"}, -1);
             this.pictureBoxGarden = new System.Windows.Forms.PictureBox();
             this.labelLicense = new System.Windows.Forms.Label();
             this.labelNoDesk = new System.Windows.Forms.Label();
@@ -79,11 +73,11 @@
             // labelNoDesk
             // 
             this.labelNoDesk.AutoSize = true;
-            this.labelNoDesk.Font = new System.Drawing.Font("Book Antiqua", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNoDesk.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNoDesk.Location = new System.Drawing.Point(759, 6);
             this.labelNoDesk.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNoDesk.Name = "labelNoDesk";
-            this.labelNoDesk.Size = new System.Drawing.Size(206, 57);
+            this.labelNoDesk.Size = new System.Drawing.Size(202, 55);
             this.labelNoDesk.TabIndex = 10;
             this.labelNoDesk.Text = "NoDesk";
             // 
@@ -96,6 +90,7 @@
             this.buttonUserManagement.TabIndex = 9;
             this.buttonUserManagement.Text = "User Management";
             this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
             // 
             // buttonIncidentManagement
             // 
@@ -118,6 +113,7 @@
             this.buttonDashboard.TabIndex = 7;
             this.buttonDashboard.Text = "Dashboard";
             this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Click += new System.EventHandler(this.buttonDashboard_Click);
             // 
             // labelOverviewTickets
             // 
@@ -131,14 +127,13 @@
             // 
             // buttonCreateTicket
             // 
-            this.buttonCreateTicket.BackColor = System.Drawing.Color.Aqua;
-            this.buttonCreateTicket.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCreateTicket.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCreateTicket.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.buttonCreateTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCreateTicket.Location = new System.Drawing.Point(760, 209);
             this.buttonCreateTicket.Name = "buttonCreateTicket";
-            this.buttonCreateTicket.Size = new System.Drawing.Size(194, 36);
+            this.buttonCreateTicket.Size = new System.Drawing.Size(194, 35);
             this.buttonCreateTicket.TabIndex = 15;
-            this.buttonCreateTicket.Text = "CREATE INCIDENT";
+            this.buttonCreateTicket.Text = "Create incident";
             this.buttonCreateTicket.UseVisualStyleBackColor = false;
             this.buttonCreateTicket.Click += new System.EventHandler(this.buttonCreateTicket_Click);
             // 
@@ -146,8 +141,6 @@
             // 
             this.listViewTickets.FullRowSelect = true;
             this.listViewTickets.HideSelection = false;
-            this.listViewTickets.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.listViewTickets.Location = new System.Drawing.Point(18, 271);
             this.listViewTickets.Name = "listViewTickets";
             this.listViewTickets.Size = new System.Drawing.Size(936, 392);
@@ -187,7 +180,7 @@
             // 
             // buttonTransfer
             // 
-            this.buttonTransfer.Location = new System.Drawing.Point(272, 230);
+            this.buttonTransfer.Location = new System.Drawing.Point(272, 231);
             this.buttonTransfer.Name = "buttonTransfer";
             this.buttonTransfer.Size = new System.Drawing.Size(150, 29);
             this.buttonTransfer.TabIndex = 17;
@@ -196,21 +189,23 @@
             // 
             // buttonSort
             // 
-            this.buttonSort.Location = new System.Drawing.Point(428, 230);
+            this.buttonSort.Location = new System.Drawing.Point(428, 231);
             this.buttonSort.Name = "buttonSort";
             this.buttonSort.Size = new System.Drawing.Size(150, 29);
             this.buttonSort.TabIndex = 17;
             this.buttonSort.Text = "Sort";
             this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
             // 
             // buttonEscalate
             // 
-            this.buttonEscalate.Location = new System.Drawing.Point(584, 230);
+            this.buttonEscalate.Location = new System.Drawing.Point(584, 231);
             this.buttonEscalate.Name = "buttonEscalate";
             this.buttonEscalate.Size = new System.Drawing.Size(150, 29);
             this.buttonEscalate.TabIndex = 17;
             this.buttonEscalate.Text = "Escalate";
             this.buttonEscalate.UseVisualStyleBackColor = true;
+            this.buttonEscalate.Click += new System.EventHandler(this.buttonEscalate_Click);
             // 
             // IncidentManagementForm
             // 

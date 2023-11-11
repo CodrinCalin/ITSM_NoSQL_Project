@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MySortOrder.cs" />
     <Compile Include="TicketPriority.cs" />
     <Compile Include="TicketStatus.cs" />
     <Compile Include="Employee.cs" />

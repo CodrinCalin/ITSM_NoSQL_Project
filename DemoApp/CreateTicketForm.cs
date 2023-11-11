@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -21,14 +22,27 @@ namespace DemoApp
 
         private TicketLogic ticketLogic;
 
+        private EmployeeLogic employeeLogic;
+
+        public event EventHandler TicketCreated;
+
         public CreateTicketForm(Employee employee)
         {
             InitializeComponent();
+
             this.employee = employee;
             ticketLogic = new TicketLogic();
+            employeeLogic = new EmployeeLogic();
 
+            loadUI();
+        }
+
+        private void loadUI()
+        {
+            // Set default values for deadline and priority
             deadlineBox.SelectedIndex = 0;
             priorityBox.SelectedIndex = 1;
+
             // Set limits for hours
             numericUpDownHours.Minimum = 0;
             numericUpDownHours.Maximum = 23;
@@ -37,15 +51,33 @@ namespace DemoApp
             numericUpDownMinutes.Minimum = 0;
             numericUpDownMinutes.Maximum = 59;
 
-            // Get the current time
             DateTime currentTime = DateTime.Now;
-
-            // Set default values for hours and minutes
             numericUpDownHours.Value = currentTime.Hour;
             numericUpDownMinutes.Value = currentTime.Minute;
 
-            // error handling!
-            // update view
+            displayUsers();
+        }
+
+        private void displayUsers()
+        {
+            if (!employee.IsSuperDesk)
+            {
+                var comboBoxItem = new Tuple<string, Employee>(employee.FirstName, employee);
+                employeeBox.Items.Add(comboBoxItem);
+                employeeBox.DisplayMember = "Item1";
+                employeeBox.SelectedItem = comboBoxItem;
+                employeeBox.Enabled = false;
+            }
+            else
+            {
+                List<Employee> employees = employeeLogic.GetEmployees();
+                foreach (Employee e in employees)
+                {
+                    var comboBoxItem = new Tuple<string, Employee>(e.FirstName, e);
+                    employeeBox.Items.Add(comboBoxItem);
+                }
+                employeeBox.DisplayMember = "Item1";
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -58,7 +90,6 @@ namespace DemoApp
             ProcessTicket();
         }
 
-
         private void ProcessTicket()
         {
             DateTime reportedDateTime = reportedDatePicker.Value.Date;
@@ -67,28 +98,26 @@ namespace DemoApp
             reportedDateTime = reportedDateTime.AddHours(hours);
             reportedDateTime = reportedDateTime.AddMinutes(minutes);
 
+            TicketPriority priority = (TicketPriority)Enum.Parse(typeof(TicketPriority), priorityBox.SelectedItem.ToString());
+            string selectedDeadline = deadlineBox.SelectedItem.ToString();
+            DateTime deadline = CalculateDeadline(reportedDateTime, selectedDeadline);
 
             string subject = subjectOfIncidentBox.Text.Trim();
             string type = typeOfIncidentBox.Text.Trim();
             string description = descriptionBox.Text.Trim();
-            string userID = userIDBox.Text.Trim();  
+            string userID = userIDBox.Text.Trim();
 
-            TicketPriority priority = (TicketPriority)Enum.Parse(typeof(TicketPriority), priorityBox.SelectedItem.ToString());
-
-
-            string selectedDeadline = deadlineBox.SelectedItem.ToString();
-            DateTime deadline = CalculateDeadline(reportedDateTime, selectedDeadline);
-
-
-            if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(userID))
-            {
+            if (string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(type) || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(userID) || employeeBox.SelectedItem == null)
                 MessageBox.Show("Please fill in all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
-                CreateTicket(reportedDateTime, subject, type, priority, deadline, description, userID);
+            {
+                Console.WriteLine(employeeBox.SelectedItem.ToString());
+                Employee selectedEmployee = (employeeBox.SelectedItem as Tuple<string, Employee>)?.Item2;
+                CreateTicket(reportedDateTime, subject, type, priority, deadline, description, userID, selectedEmployee);
+            }       
         }
 
-        private void CreateTicket(DateTime reportedDateTime, string subject, string type, TicketPriority priority, DateTime deadline, string description, string userID)
+        private void CreateTicket(DateTime reportedDateTime, string subject, string type, TicketPriority priority, DateTime deadline, string description, string userID, Employee e)
         {
             Ticket ticket = new Ticket();
             ticket.DateAndTime = reportedDateTime;
@@ -99,7 +128,7 @@ namespace DemoApp
             ticket.Status = TicketStatus.Open;
             ticket.Deadline = deadline;
             ticket.Description = description;
-            ticket.EmployeeID = employee.Id;
+            ticket.EmployeeID = e.Id;
 
             ticketLogic.CreateTicket(ticket);
 
@@ -108,11 +137,8 @@ namespace DemoApp
             this.Hide();
         }
 
-        public event EventHandler TicketCreated;
-
         protected virtual void OnTicketCreated(EventArgs e)
         {
-            // Raise the event
             TicketCreated?.Invoke(this, e);
         }
 

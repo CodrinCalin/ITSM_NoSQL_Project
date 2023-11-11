@@ -52,6 +52,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.userIDBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.employeeBox = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).BeginInit();
@@ -140,7 +142,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 453);
+            this.label7.Location = new System.Drawing.Point(25, 492);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(143, 20);
             this.label7.TabIndex = 21;
@@ -149,7 +151,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 512);
+            this.label8.Location = new System.Drawing.Point(25, 535);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 20);
             this.label8.TabIndex = 22;
@@ -171,14 +173,15 @@
             // 
             // descriptionBox
             // 
-            this.descriptionBox.Location = new System.Drawing.Point(203, 512);
+            this.descriptionBox.Location = new System.Drawing.Point(203, 535);
             this.descriptionBox.Multiline = true;
             this.descriptionBox.Name = "descriptionBox";
-            this.descriptionBox.Size = new System.Drawing.Size(292, 130);
+            this.descriptionBox.Size = new System.Drawing.Size(292, 107);
             this.descriptionBox.TabIndex = 27;
             // 
             // priorityBox
             // 
+            this.priorityBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.priorityBox.FormattingEnabled = true;
             this.priorityBox.Items.AddRange(new object[] {
             "Low",
@@ -199,13 +202,14 @@
             // 
             // deadlineBox
             // 
+            this.deadlineBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.deadlineBox.FormattingEnabled = true;
             this.deadlineBox.Items.AddRange(new object[] {
             "7 days",
             "14 days",
             "28 days",
             "6 months"});
-            this.deadlineBox.Location = new System.Drawing.Point(203, 453);
+            this.deadlineBox.Location = new System.Drawing.Point(203, 492);
             this.deadlineBox.Name = "deadlineBox";
             this.deadlineBox.Size = new System.Drawing.Size(292, 28);
             this.deadlineBox.TabIndex = 30;
@@ -261,7 +265,7 @@
             // 
             // userIDBox
             // 
-            this.userIDBox.Location = new System.Drawing.Point(203, 400);
+            this.userIDBox.Location = new System.Drawing.Point(203, 448);
             this.userIDBox.Name = "userIDBox";
             this.userIDBox.Size = new System.Drawing.Size(292, 26);
             this.userIDBox.TabIndex = 36;
@@ -269,17 +273,37 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 400);
+            this.label5.Location = new System.Drawing.Point(25, 448);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 20);
             this.label5.TabIndex = 37;
             this.label5.Text = "User ID:";
+            // 
+            // employeeBox
+            // 
+            this.employeeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.employeeBox.FormattingEnabled = true;
+            this.employeeBox.Location = new System.Drawing.Point(203, 401);
+            this.employeeBox.Name = "employeeBox";
+            this.employeeBox.Size = new System.Drawing.Size(292, 28);
+            this.employeeBox.TabIndex = 38;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(29, 401);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(83, 20);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Employee:";
             // 
             // CreateTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 710);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.employeeBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.userIDBox);
             this.Controls.Add(this.label9);
@@ -338,5 +362,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox userIDBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox employeeBox;
+        private System.Windows.Forms.Label label10;
     }
 }
