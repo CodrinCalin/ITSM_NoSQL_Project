@@ -167,6 +167,12 @@
     <Compile Include="FilteringIncidentsForm.Designer.cs">
       <DependentUpon>FilteringIncidentsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransferTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransferTicket.Designer.cs">
+      <DependentUpon>TransferTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </Compile>
     <EmbeddedResource Include="FilteringIncidentsForm.resx">
       <DependentUpon>FilteringIncidentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransferTicket.resx">
+      <DependentUpon>TransferTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagementForm.resx">
       <DependentUpon>UserManagementForm.cs</DependentUpon>

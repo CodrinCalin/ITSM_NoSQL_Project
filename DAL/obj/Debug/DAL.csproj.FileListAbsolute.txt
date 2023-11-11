@@ -143,3 +143,32 @@ C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.cspro
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.dll
 C:\Users\koval\Desktop\github testing\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.pdb
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\snappy32.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\snappy64.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\libzstd.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\mongocrypt.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\DAL.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\DAL.pdb
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\DnsClient.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\Model.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Bson.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Driver.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Libmongocrypt.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\SharpCompress.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\System.Buffers.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\System.ValueTuple.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\Model.pdb
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\DnsClient.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Bson.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Driver.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\MongoDB.Driver.Core.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\System.Buffers.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\bin\Debug\System.ValueTuple.xml
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.dll
+C:\Users\codri\OneDrive\Documents\GitHub\ITSM_NoSQL_Project\DAL\obj\Debug\DAL.pdb

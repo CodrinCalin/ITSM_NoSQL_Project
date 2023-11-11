@@ -207,5 +207,26 @@ namespace DemoApp
             dashboardForm.Show();
             this.Hide();
         }
+
+        private void buttonTransfer_Click(object sender, EventArgs e)
+        {
+            // Check if an employee is selected in the ListView
+            if (listViewTickets.SelectedItems.Count > 0)
+            {
+                
+                // Assuming the first column in the ListView is the employee ID
+                Ticket selectedTicekt = (Ticket)listViewTickets.SelectedItems[0].Tag;
+
+                // Open the TransferTicketForm and pass the selected employee ID
+                TransferTicket transferForm = new TransferTicket(selectedTicekt);
+
+                // Show the TransferTicketForm without blocking the current form
+                transferForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select an employee to transfer.", "No Employee Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

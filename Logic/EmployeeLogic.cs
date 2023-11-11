@@ -23,9 +23,24 @@ namespace Logic
             return employeeDao.GetEmployeeById(employeeId);
         }
 
+        public void AddEmployee(Employee employee)
+        {
+            employeeDao.AddEmployee(employee);
+        }
+
         public List<Employee> GetEmployees()
         {
             return employeeDao.GetEmployees();
+        }
+
+        public List<Employee> GetEmployeeByEmail(string email)
+        {
+            return employeeDao.GetEmployeesByEmail(email);
+        }
+
+        public Employee GetEmployeeByUsername(string username)
+        {
+            return employeeDao.GetEmployeeByUsername(username);
         }
     }
 }

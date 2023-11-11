@@ -108,5 +108,13 @@ namespace DAL
             List<Ticket> tickets = collection.Find(new BsonDocument()).Sort(sortField).ToList();
             return tickets;
         }
+
+        public void ChangeTicketEmployeeId(ObjectId ticketId, ObjectId newEmployeeId)
+        {
+            var filter = Builders<Ticket>.Filter.Eq(x => x.Id, ticketId);
+            var update = Builders<Ticket>.Update.Set(x => x.EmployeeID, newEmployeeId);
+
+            collection.UpdateOne(filter, update);
+        }
     }
 }

@@ -48,10 +48,20 @@ namespace DAL
             return collection.Find(filter).FirstOrDefault();
         }
 
+        public void AddEmployee(Employee employee)
+        {
+            collection.InsertOne(employee);
+        }
         public Employee GetEmployeeByUsername(string username)
         {
             var filter = Builders<Employee>.Filter.Eq(x => x.Username, username);
             return collection.Find(filter).FirstOrDefault();
+        }
+
+        public List<Employee> GetEmployeesByEmail(string email)
+        {
+            var filter = Builders<Employee>.Filter.Eq(x => x.Email, email);
+            return collection.Find(filter).ToList();
         }
     }
 }
