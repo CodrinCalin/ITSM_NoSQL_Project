@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +22,7 @@ namespace DemoApp
         int totalTicketsResolved = 0;
         int totalTicketsClosed = 0;
         int totalTicketsPastDeadline = 0;
+        int toalTicketsEscalated = 0;
         TicketLogic ticketLogic;
         List<Ticket> tickets;
 
@@ -41,7 +44,7 @@ namespace DemoApp
         private void LoadLabels()
         {
             string role;
-
+            buttonDashboard.Enabled = false;
             if (employee.IsSuperDesk)
             {
                 role = "Super Desk Employee";
@@ -51,11 +54,18 @@ namespace DemoApp
             {
                 role = "Regular Employee";
                 ProgressForRegularEmployee();
+                SetButtonsAccess();
             }
 
             labelWelcome.Text = $"Welcome back,\n{employee.FirstName} {employee.LastName}";
             labelRole.Text = $"Your role is: {role}";
            
+        }
+
+        private void SetButtonsAccess()
+        {
+            buttonUserManagement.Enabled = false;
+            buttonUserManagement.BackColor = Color.Gray;
         }
 
         private void ProgressForRegularEmployee()
@@ -81,6 +91,7 @@ namespace DemoApp
             chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Resolved", totalTicketsResolved);
             chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Closed", totalTicketsClosed);
             chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Past Deadline", totalTicketsPastDeadline);
+            chartPieIncidents.Series["IncidentsSeries"].Points.AddXY("Escalated", toalTicketsEscalated);
             labelTotalIncidents.Text = $"Total Incidents: {totalTickets}";
         }
 
@@ -105,32 +116,33 @@ namespace DemoApp
                 {
                     totalTicketsClosed++;
                 }
+                else if (ticket.Status == TicketStatus.Escalated)
+                {
+                    toalTicketsEscalated++;
+                }
                 
             }
         }
 
         private void buttonShowList_Click(object sender, EventArgs e)
         {
-
+            ChangeUI(new IncidentManagementForm(employee));
         }
 
         private void buttonIncidentManagement_Click(object sender, EventArgs e)
         {
-            IncidentManagementForm incidentManagementForm = new IncidentManagementForm(employee);
-            incidentManagementForm.Show();
-            this.Hide();
+            ChangeUI(new IncidentManagementForm(employee));
         }
 
         private void buttonUserManagement_Click(object sender, EventArgs e)
         {
-            UserManagementForm userManagementForm = new UserManagementForm(employee);
-            userManagementForm.Show();
-            this.Hide();
+            ChangeUI(new UserManagementForm(employee));
         }
 
-        private void ChangeUI(IncidentManagementForm managementForm)
+        private void ChangeUI(Form formToShow)
         {
-           
+            formToShow.Show();
+            this.Hide();
         }
     }
 }

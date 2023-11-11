@@ -23,13 +23,40 @@ namespace DemoApp
         
         public IncidentManagementForm(Employee employee) 
         {
-            InitializeComponent();
-            this.employee = employee;
+            try
+            {
+                InitializeComponent();
+                this.employee = employee;
+                employeeLogic = new EmployeeLogic();
+                CreateColumns();
+                if (employee.IsSuperDesk)
+                {
+                    this.ticketLogic = new TicketLogic();
+                }
+                else
+                {
+                    this.ticketLogic = new TicketLogic(employee);
+                    SetButtonsAccess();
+                }
+                RefreshListView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-            employeeLogic = new EmployeeLogic();
-            CreateColumns();
+        private void SetButtonsAccess()
+        {
+            buttonEscalate.Enabled = false;
+            buttonClose.Enabled = false;
+            buttonEdit.Enabled = false;
+            buttonUserManagement.Enabled = false;
+            buttonEscalate.BackColor = Color.Gray;
+            buttonClose.BackColor = Color.Gray;
+            buttonEdit.BackColor = Color.Gray;
+            buttonUserManagement.BackColor = Color.Gray;
 
-            RefreshListView();
         }
 
         private TimeZoneInfo nlTimeZone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
@@ -60,7 +87,9 @@ namespace DemoApp
 
             TicketLogic ticketLogic;
             if (employee.IsSuperDesk)
+            {
                 ticketLogic = new TicketLogic();
+            }
             else
                 ticketLogic = new TicketLogic(employee);
             List<Ticket> tickets = ticketLogic.GetTickets();
@@ -111,7 +140,7 @@ namespace DemoApp
 
         private void buttonFilter_Click(object sender, EventArgs e)
         {
-            new FilteringIncidentsForm().ShowDialog();
+            new FilteringIncidentsForm(this.employee).ShowDialog();
         }
 
         private void buttonCloseTicket_Click(object sender, EventArgs e)
@@ -120,7 +149,7 @@ namespace DemoApp
             {
                 ListViewItem selectedTicketItem = listViewTickets.SelectedItems[0];
                 Ticket selectedTicket = (Ticket)selectedTicketItem.Tag;
-                ticketLogic.CloseTicket(selectedTicket.Id);
+                this.ticketLogic.CloseTicket(selectedTicket.Id);
                 RefreshListView();
             }
             else

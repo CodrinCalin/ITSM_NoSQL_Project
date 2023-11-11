@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DAL
 {
     public class EmployeeDao
@@ -18,9 +19,18 @@ namespace DAL
 
         public EmployeeDao()
         {
-            client = new MongoClient("mongodb+srv://706431:user123@cluster0.bvkka8o.mongodb.net/");
-            db = client.GetDatabase("NoSQL_ProjectDatabase");
-            collection = db.GetCollection<Employee>("Employees");
+            try
+            {
+                client = new MongoClient("mongodb+srv://706431:user123@cluster0.bvkka8o.mongodb.net/");
+                db = client.GetDatabase("NoSQL_ProjectDatabase");
+                collection = db.GetCollection<Employee>("Employees");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Problem while connecting to the database.");
+                throw ex;
+               
+            }
         }
 
         public List<Employee> GetEmployees()   // all employees

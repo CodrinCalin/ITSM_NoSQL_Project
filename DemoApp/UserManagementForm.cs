@@ -17,7 +17,7 @@ namespace DemoApp
         public UserManagementForm(Employee employee)
         {
             InitializeComponent();
-            this.employee = employee;
+            this.employee = employee; 
         }
         
         //      --------------------------------------------------
