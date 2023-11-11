@@ -90,6 +90,7 @@
             this.buttonUserManagement.TabIndex = 9;
             this.buttonUserManagement.Text = "User Management";
             this.buttonUserManagement.UseVisualStyleBackColor = true;
+            this.buttonUserManagement.Click += new System.EventHandler(this.buttonUserManagement_Click);
             // 
             // buttonIncidentManagement
             // 
@@ -112,6 +113,7 @@
             this.buttonDashboard.TabIndex = 7;
             this.buttonDashboard.Text = "Dashboard";
             this.buttonDashboard.UseVisualStyleBackColor = true;
+            this.buttonDashboard.Click += new System.EventHandler(this.buttonDashboard_Click);
             // 
             // labelOverviewTickets
             // 

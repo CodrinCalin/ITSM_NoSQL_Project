@@ -8,6 +8,6 @@ namespace Model
 {
     public enum MySortOrder
     {
-        Acsending, Descending
+        Ascending, Descending
     }
 }

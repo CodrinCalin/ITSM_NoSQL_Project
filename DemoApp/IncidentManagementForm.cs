@@ -164,5 +164,19 @@ namespace DemoApp
             PrioritySortingForm prioritySortingForm = new PrioritySortingForm(employee);
             prioritySortingForm.ShowDialog();
         }
+
+        private void buttonUserManagement_Click(object sender, EventArgs e)
+        {
+            UserManagementForm userManagementForm = new UserManagementForm(employee);
+            userManagementForm.Show();
+            this.Hide();
+        }
+
+        private void buttonDashboard_Click(object sender, EventArgs e)
+        {
+            DashboardForm dashboardForm = new DashboardForm(employee);
+            dashboardForm.Show();
+            this.Hide();
+        }
     }
 }
