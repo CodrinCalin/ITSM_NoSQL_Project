@@ -48,7 +48,7 @@ namespace DemoApp
                 listViewTickets.Columns.Add("Name", 100);
             listViewTickets.Columns.Add("Subject", 120);
             listViewTickets.Columns.Add("Priority", 80);
-            listViewTickets.Columns.Add("Description", 170);
+            listViewTickets.Columns.Add("Description", 200);
             listViewTickets.Columns.Add("Date and Time", 120);
             listViewTickets.Columns.Add("Deadline", 90);
             listViewTickets.Columns.Add("Status", 80);

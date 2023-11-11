@@ -22,5 +22,10 @@ namespace Logic
         {
             return employeeDao.GetEmployeeById(employeeId);
         }
+
+        public List<Employee> GetEmployees()
+        {
+            return employeeDao.GetEmployees();
+        }
     }
 }

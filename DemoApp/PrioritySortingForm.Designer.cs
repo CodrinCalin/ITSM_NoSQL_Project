@@ -81,6 +81,7 @@
             // 
             // comboBoxPriority
             // 
+            this.comboBoxPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPriority.FormattingEnabled = true;
             this.comboBoxPriority.Items.AddRange(new object[] {
             "From low to urgent",

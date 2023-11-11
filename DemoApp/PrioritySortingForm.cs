@@ -63,6 +63,7 @@ namespace DemoApp
 
                 item.Tag = ticket;
                 listViewTickets.Items.Add(item);
+                id++;
             }
             listViewTickets.Refresh();
         }
