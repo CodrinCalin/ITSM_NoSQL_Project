@@ -80,13 +80,13 @@
             // 
             // buttonUserManagement
             // 
-<<<<<<< Updated upstream
+
             this.buttonUserManagement.BackColor = System.Drawing.Color.White;
             this.buttonUserManagement.Location = new System.Drawing.Point(642, 129);
             this.buttonUserManagement.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-=======
+
             this.buttonUserManagement.Location = new System.Drawing.Point(428, 84);
->>>>>>> Stashed changes
+
             this.buttonUserManagement.Name = "buttonUserManagement";
             this.buttonUserManagement.Size = new System.Drawing.Size(216, 39);
             this.buttonUserManagement.TabIndex = 9;

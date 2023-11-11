@@ -18,14 +18,14 @@ namespace DemoApp
         public UserManagementForm(Employee employee)
         {
             InitializeComponent();
-<<<<<<< Updated upstream
+
             this.employee = employee; 
-=======
+
             this.employee = employee;
             employeeLogic = new Logic.EmployeeLogic();
             GetAllEmployees();
             passwordTxtBox.PasswordChar = '*';
->>>>>>> Stashed changes
+
         }
 
         public void GetAllEmployees()
